@@ -1,6 +1,8 @@
-%h2 Create New Movie
+-# edit.html.haml using partial
 
-= form_tag movies_path do
+%h2 Edit Existing Movie
+
+= form_tag game_path(@game), :method => :put do
 
   = label :movie, :title, 'Title'
   = text_field :movie, 'title'
@@ -11,4 +13,4 @@
   = label :movie, :release_date, 'Released On'
   = date_select :movie, :release_date
 
-  = submit_tag 'Save Changes', :class => 'btn btn-primary'
+  = submit_tag 'Update Movie Info', :class => 'btn btn-primary'

@@ -1,0 +1,31 @@
+-#  This file is app/views/games/index.html.haml
+%h2 All Games
+
+-# = form_tag movies_path, :method => :get, :id => 'ratings_form' do
+-#   = hidden_field_tag "title_sort", true if @title_header
+-#   = hidden_field_tag ":release_date_sort", true if @date_header
+-#   Include:
+-#   - @all_ratings.each do |rating|
+-#     = rating
+-#     = check_box_tag "ratings[#{rating}]", 1, @selected_ratings.include?(rating), :id => "ratings_#{rating}"
+-#   = submit_tag 'Refresh', :id => 'ratings_submit', :class => 'btn btn-primary'
+
+%table#games.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th Sport Name
+      %th Zip Code
+      %th Start Time
+      %th End Time
+      %th Slots Available
+  %tbody
+    - @games.each do |game|
+      %tr
+        %td= game.sport_name
+        %td= game.zipcode
+        %td= game.game_start_time
+        %td= game.game_end_time
+        %td= game.slots_to_be_filled - game.slots_taken
+        %td= link_to "More about #{game.sport_name}", game_path(game)
+
+= link_to 'Add new game', new_game_path

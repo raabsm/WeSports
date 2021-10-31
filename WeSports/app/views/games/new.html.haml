@@ -1,0 +1,20 @@
+%h2 Create New Movie
+
+= form_tag games_path do
+
+  = label :game, :sport_name, 'Sport Name'
+  = text_field :game, "sport_name"
+
+  = label :game, :slots_to_be_filled, 'Total Slots Available'
+  = number_field :game, :slots_to_be_filled, min: 1
+
+  = label :game, :slots_taken, 'Total Slots Taken'
+  = number_field :game, :slots_taken, min: 0
+
+  = label :game, :game_start_time, 'Game Start Time'
+  = datetime_select :game, :game_start_time, default: 3.days.from_now, ampm: true
+
+  = label :game, :game_end_time, 'Game End Time'
+  = datetime_select :game, :game_end_time, default: 3.days.from_now, ampm: true
+
+  = submit_tag 'Save Changes', :class => 'btn btn-primary'
