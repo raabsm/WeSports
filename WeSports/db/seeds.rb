@@ -6,18 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-movies = [{:title => 'Aladdin', :rating => 'G', :release_date => '25-Nov-1992'},
-    	  {:title => 'The Terminator', :rating => 'R', :release_date => '26-Oct-1984'},
-    	  {:title => 'When Harry Met Sally', :rating => 'R', :release_date => '21-Jul-1989'},
-      	  {:title => 'The Help', :rating => 'PG-13', :release_date => '10-Aug-2011'},
-      	  {:title => 'Chocolat', :rating => 'PG-13', :release_date => '5-Jan-2001'},
-      	  {:title => 'Amelie', :rating => 'R', :release_date => '25-Apr-2001'},
-      	  {:title => '2001: A Space Odyssey', :rating => 'G', :release_date => '6-Apr-1968'},
-      	  {:title => 'The Incredibles', :rating => 'PG', :release_date => '5-Nov-2004'},
-      	  {:title => 'Raiders of the Lost Ark', :rating => 'PG', :release_date => '12-Jun-1981'},
-      	  {:title => 'Chicken Run', :rating => 'G', :release_date => '21-Jun-2000'},
-  	 ]
+games = [{:sport_name => 'Spikeball', :zipcode => '10027', :slots_to_be_filled => 4, :slots_taken => 2, :game_start_time => '31-Oct-2021 15:03:00'},
+				 {:sport_name => 'Basketball', :zipcode => '10027', :slots_to_be_filled => 10, :slots_taken => 1, :game_start_time => '1-Nov-2021 12:00:00'},
+				 {:sport_name => 'Baseball', :zipcode => '10025', :slots_to_be_filled => 20, :slots_taken => 1, :game_start_time => '5-Nov-2021 19:30:00'},
+				 {:sport_name => 'Soccer', :zipcode => '10027', :slots_to_be_filled => 8, :slots_taken => 1, :game_start_time => '31-Oct-2021 08:00:00', :game_end_time => '31-Oct-2021 10:00:00'},
+]
 
-movies.each do |movie|
-  Movie.create!(movie)
+games.each do |game|
+  Game.create!(game)
 end
