@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211031171833) do
+ActiveRecord::Schema.define(version: 20211101224347) do
 
   create_table "games", force: :cascade do |t|
     t.string   "sport_name"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20211031171833) do
     t.integer  "slots_taken"
     t.datetime "game_start_time"
     t.datetime "game_end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
