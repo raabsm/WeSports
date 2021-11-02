@@ -27,14 +27,14 @@ class GamesController < ApplicationController
   def update
     @game = Game.find params[:id]
     @game.update_attributes!(params[:game])
-    flash[:notice] = "#{@game.title} was successfully updated."
+    flash[:notice] = "#{@game.sport_name} was successfully updated."
     redirect_to games_path(@game)
   end
 
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
-    flash[:notice] = "Game '#{@game.title}' deleted."
+    flash[:notice] = "Game '#{@game.sport_name}' deleted."
     redirect_to games_path
   end
 
