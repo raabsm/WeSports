@@ -1,15 +1,15 @@
 # Add a declarative step here for populating the DB with movies.
 
-Given /the following movies exist/ do |movies_table|
-  movies_table.hashes.each do |movie|
+Given /the following games exist/ do |games_table|
+  games_table.hashes.each do |game|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
-    Movie.create(movie)
+    Game.create(game)
   end
 end
 
-Then /(.*) seed movies should exist/ do | n_seeds |
-  Movie.count.should be n_seeds.to_i
+Then /(.*) seed games should exist/ do | n_seeds |
+  Game.count.should be n_seeds.to_i
 end
 
 # Make sure that one string (regexp) occurs before or after another one
@@ -25,6 +25,7 @@ end
 #  "When I uncheck the following ratings: PG, G, R"
 #  "When I check the following ratings: G"
 
+'''
 When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   # HINT: use String#split to split up the rating_list, then
   #   iterate over the ratings and reuse the "When I check..." or
@@ -35,8 +36,9 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
     rating_list.split(", ").each {|rating| step %{I check "ratings_#{rating}"}}
   end
 end
+'''
 
-Then /I should see all the movies/ do
+Then /I should see all the games/ do
   # Make sure that all the movies in the app are visible in the table
-  Movie.count() == page.all("#movies").size() - 1
+  Game.count() == page.all("#games").size() - 1
 end
