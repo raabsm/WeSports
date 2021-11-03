@@ -38,6 +38,10 @@ class GamesController < ApplicationController
     redirect_to games_path
   end
 
+  def join
+    @game = Game.find(params[:id])
+  end
+
   private
   def game_params
     params.require(:game).permit(:sport_name, :zipcode, :slots_to_be_filled, :slots_taken, :game_start_time)

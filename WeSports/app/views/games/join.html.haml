@@ -1,0 +1,13 @@
+%h3 To Join #{@game.sport_name}
+
+= form_tag game_path(@game), :method => :put do
+
+  = label :movie, :title, 'Title'
+  = text_field :movie, 'title'
+
+  = submit_tag 'Update Movie Info', :class => 'btn btn-primary'
+
+
+= link_to "Back to #{@game.sport_name} Description'", game_path(@game)
+
+= link_to 'Back to Games list', games_path
