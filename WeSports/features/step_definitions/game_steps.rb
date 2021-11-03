@@ -21,14 +21,6 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   page.body =~ /#{e1}.+#{e2}/
 end
 
-When /^I add "(.*)" to the search box$/ do |item|
-  @browser.find_element(:id, 'search-bar').send_keys(item)
-end
-
-And /^I click the Search Button$/ do
-  @browser.find_element(:id, 'search-button').click
-end
-
 # Make it easier to express checking or unchecking several boxes at once
 #  "When I uncheck the following ratings: PG, G, R"
 #  "When I check the following ratings: G"
