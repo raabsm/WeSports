@@ -17,7 +17,7 @@ Background: games have been added to database
   Scenario: Filter list of games by sport "Spikeball"
     Given I am on the home page
 
-    When  I fill in "search-bar" with "Spikeball"
+    When  I fill in "search-name-bar" with "Spikeball"
     And I press "Filter"
 
     Then I should not see "Basketball"
@@ -30,7 +30,7 @@ Background: games have been added to database
   Scenario: Filter list of games by sport that has both lowercase and uppercase
     Given I am on the home page
 
-    When  I fill in "search-bar" with "basketball"
+    When  I fill in "search-name-bar" with "basketball"
     And I press "Filter"
 
     Then I should not see "Spikeball"
@@ -43,7 +43,7 @@ Background: games have been added to database
   Scenario: Filter list of games with invalid sport name
     Given I am on the home page
 
-    When  I fill in "search-bar" with "invalid"
+    When  I fill in "search-name-bar" with "invalid"
     And I press "Filter"
 
     Then I should not see "Basketball"

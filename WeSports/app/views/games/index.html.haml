@@ -12,7 +12,13 @@
 
 = form_tag(games_path, :method => "get") do
   #search-bar.input-group
-    = search_field_tag :search, params[:search], placeholder: "Enter a Sport", class: "form-control", :id => "search-bar"
+    = search_field_tag :name_search, params[:name_search], placeholder: "Enter a Sport", class: "form-control", :id => "search-name-bar"
+    #search-button.input-group-btn
+      = button_tag "Filter", :class => 'btn btn-info glyphicon glyphicon-search', :name => nil
+
+= form_tag(games_path, :method => "get") do
+  #search-bar.input-group
+    = search_field_tag :zip_search, params[:zip_search], placeholder: "Enter a Zipcode", class: "form-control", :id => "search-zipcode-bar"
     #search-button.input-group-btn
       = button_tag "Filter", :class => 'btn btn-info glyphicon glyphicon-search', :name => nil
 

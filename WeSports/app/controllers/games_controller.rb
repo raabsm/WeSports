@@ -7,11 +7,14 @@ class GamesController < ApplicationController
   end
 
   def index
-    if params[:search].blank?
+    if params[:name_search].blank? and params[:zip_search].blank?
       @games = Game.all()
-    else
-      @sport = params[:search].downcase
-      @games = Game.all.where("lower(sport_name) LIKE :search", search: "%#{@sport}%")
+    elsif !params[:name_search].blank? and params[:zip_search].blank?
+      @sport = params[:name_search].downcase
+      @games = Game.all.where("lower(sport_name) LIKE :name_search", name_search: "%#{@sport}%")
+    elsif params[:name_search].blank? and !params[:zip_search].blank?
+      @zip = params[:zip_search].downcase
+      @games = Game.all.where("zipcode LIKE :zip_search", zip_search: "%#{@zip}%")
     end
   end
 
@@ -56,4 +59,3 @@ class GamesController < ApplicationController
     params.require(:game).permit(:sport_name, :zipcode, :slots_to_be_filled, :slots_taken, :game_start_time, :game_end_time)
   end
 end
-
