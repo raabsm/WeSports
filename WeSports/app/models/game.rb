@@ -9,8 +9,32 @@ class Game < ActiveRecord::Base
         end
     end
 
+    def update_game(game_params)
+        valid, notice = Game.check_valid_game(game_params)
+        if valid
+            if game_params[:slots_to_be_filled].to_i < slots_taken
+                valid = false
+                notice = "Error: More Slots Taken than Available"
+            else
+                update_attributes!(game_params)
+                notice = "Successfully updated game"
+            end
+        end
+
+        return valid, notice
+    end
+
     def self.add_game(game_params)
-        puts game_params[:slots_to_be_filled]
+        valid, notice = Game.check_valid_game(game_params)
+        if valid
+            game_params[:slots_taken] = 0
+            create!(game_params)
+            notice = "Successfully created #{game_params[:sport_name]} game"
+        end
+        return valid, notice
+    end
+
+    def self.check_valid_game(game_params)
         if game_params[:sport_name].empty? or game_params[:zipcode].empty?
             notice = "Error: Missing Zip Code or Sport Name Fields"
             valid = false
@@ -18,9 +42,8 @@ class Game < ActiveRecord::Base
             notice = "Error: Total Slots Available not valid"
             valid = false
         else
-            notice = "Successfully created #{game_params[:sport_name]} game"
+            notice = ""
             valid = true
-            create!(game_params)
         end
         return valid, notice
     end

@@ -30,9 +30,13 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find params[:id]
-    @game.update_attributes!(params[:game])
-    flash[:notice] = "#{@game.sport_name} was successfully updated."
-    redirect_to games_path(@game)
+    valid, notice = @game.update_game(game_params())
+    flash[:notice] = notice
+    if valid
+      redirect_to game_path(@game)
+    else
+      redirect_to edit_game_path(@game)
+    end
   end
 
   def destroy
