@@ -15,9 +15,13 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.create!(game_params)
-    flash[:notice] = "#{@game.sport_name} was successfully created."
-    redirect_to games_path
+    valid, notice = Game.add_game(game_params())
+    flash[:notice] = notice
+    if valid
+      redirect_to games_path
+    else
+      redirect_to new_game_path
+    end
   end
 
   def edit
@@ -40,7 +44,7 @@ class GamesController < ApplicationController
 
   private
   def game_params
-    params.require(:game).permit(:sport_name, :zipcode, :slots_to_be_filled, :slots_taken, :game_start_time)
+    params.require(:game).permit(:sport_name, :zipcode, :slots_to_be_filled, :slots_taken, :game_start_time, :game_end_time)
   end
 end
 
