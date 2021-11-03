@@ -14,7 +14,7 @@ class Game < ActiveRecord::Base
         if valid
             if game_params[:slots_to_be_filled].to_i < slots_taken
                 valid = false
-                notice = "Error: More Slots Taken than Available"
+                notice = "Error: More Slots Taken (#{slots_taken}) than Available"
             else
                 update_attributes!(game_params)
                 notice = "Successfully updated game"
