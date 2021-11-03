@@ -7,7 +7,12 @@ class GamesController < ApplicationController
   end
 
   def index
-    @games = Game.all()
+    if params[:search].blank?
+      @games = Game.all()
+    else
+      @sport = params[:search].downcase
+      @games = Game.all.where("lower(sport_name) LIKE :search", search: "%#{@sport}%")
+    end
   end
 
   def new
