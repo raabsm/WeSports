@@ -25,7 +25,7 @@
         %td= game.zipcode
         %td= game.game_start_time
         %td= game.game_end_time
-        %td= game.slots_to_be_filled - game.slots_taken
+        %td= game.spots_left
         %td= link_to "More about #{game.sport_name}", game_path(game)
 
 = link_to 'Add new game', new_game_path

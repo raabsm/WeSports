@@ -11,7 +11,7 @@
     = @game.game_start_time.strftime("%B %d, %Y, %I:%M %p")
   %li
     Slots Left Available:
-    = @game.slots_to_be_filled - @game.slots_taken
+    = @game.spots_left
 
 = link_to 'Edit', edit_game_path(@game)
 = button_to 'Delete', game_path(@game), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
