@@ -28,4 +28,4 @@
         %td= game.spots_left
         %td= link_to "More about #{game.sport_name}", game_path(game)
 
-= link_to 'Add new game', new_game_path
+= button_to 'Add new game', new_game_path, method: :get
