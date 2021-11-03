@@ -10,11 +10,17 @@ module NavigationHelpers
   #
   # step definition in web_steps.rb
   #
+
   def path_to(page_name)
     case page_name
 
     when /^the (WeSports )?home\s?page$/ then '/games'
     when /^the new game page$/ then '/games/new'
+    when /^the games page$/ then '/games'
+    when /^the edit page for "(.*)"$/ then
+      edit_game_path(Game.find_by(sport_name: $1))
+    when /^the details page for "(.*)"$/
+      game_path(Game.find_by(sport_name: $1))
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
