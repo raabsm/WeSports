@@ -18,7 +18,7 @@ Background: games have been added to database
     Given I am on the home page
 
     When  I fill in "search-name-bar" with "Spikeball"
-    And I press "Filter"
+    And I press "Name Filter"
 
     Then I should not see "Basketball"
     Then I should not see "Football"
@@ -31,7 +31,7 @@ Background: games have been added to database
     Given I am on the home page
 
     When  I fill in "search-name-bar" with "basketball"
-    And I press "Filter"
+    And I press "Name Filter"
 
     Then I should not see "Spikeball"
     Then I should not see "Football"
@@ -44,7 +44,7 @@ Background: games have been added to database
     Given I am on the home page
 
     When  I fill in "search-name-bar" with "invalid"
-    And I press "Filter"
+    And I press "Name Filter"
 
     Then I should not see "Basketball"
     Then I should not see "Football"
