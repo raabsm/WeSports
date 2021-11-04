@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'simplecov'
 
 RSpec.describe GamesController, type: :controller do
   before(:all) do
@@ -33,6 +34,10 @@ RSpec.describe GamesController, type: :controller do
                   :slots_to_be_filled => 10,
                   :slots_taken => 10)
     end
+  end
+
+  after(:all) do
+    Game.delete_all
   end
 
   describe "When trying to filter by name with a valid sport name" do

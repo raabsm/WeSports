@@ -1,7 +1,9 @@
 require 'rails_helper'
+require 'simplecov'
 
 RSpec.describe Game, type: :model do
   before(:all) do
+    Game.delete_all
     if Game.where(:sport_name => "Spikeball").empty?
       Game.create(:sport_name => "Spikeball",
                   :zipcode => "10027",
@@ -32,6 +34,10 @@ RSpec.describe Game, type: :model do
                   :slots_to_be_filled => 10,
                   :slots_taken => 7)
     end
+  end
+
+  after(:all) do
+    Game.delete_all
   end
 
   describe "join_game method" do
