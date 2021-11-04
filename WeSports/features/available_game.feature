@@ -9,7 +9,7 @@ Background: games have been added to database
     | Basketball  | 10024   | 10                 | 10          | 31-Oct-2021 15:03:00  |               |
     | basketball  | 10025   | 10                 | 3           | 03-Nov-2021 10:00:00  |               |
     | Football    | 10030   | 22                 | 22          | 03-Nov-2021 16:00:00  |               |
-    | soccer      | 10010   | 10                 | 7           | 03-Nov-2021 12:00:00  |               |
+    | soccer      | 10027   | 10                 | 7           | 03-Nov-2021 12:00:00  |               |
 
   And  I am on the WeSports home page
   Then 5 seed games should exist
@@ -25,6 +25,25 @@ Scenario: Only see available games
 
   Then I should see "soccer"
   Then I should see "basketball"
+  Then I should see "Spikeball"
+
+Scenario: Only see available games that are in "10027" with name like "Spikeball"
+  Given I am on the home page
+
+  When  I check "only_available"
+  And I press "Refresh"
+
+  When  I fill in "search-name-bar" with "Spikeball"
+  And I press "Name Filter"
+
+  When  I fill in "search-zipcode-bar" with "10027"
+  And I press "Zip Filter"
+
+  Then I should not see "Basketball"
+  Then I should not see "Football"
+  Then I should not see "soccer"
+  Then I should not see "basketball"
+
   Then I should see "Spikeball"
 
 Scenario: See all games
