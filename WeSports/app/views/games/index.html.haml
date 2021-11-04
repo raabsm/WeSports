@@ -10,6 +10,11 @@
 -#     = check_box_tag "ratings[#{rating}]", 1, @selected_ratings.include?(rating), :id => "ratings_#{rating}"
 -#   = submit_tag 'Refresh', :id => 'ratings_submit', :class => 'btn btn-primary'
 
+= form_tag games_path, :method => :get, :id => 'available_form' do
+  Only available games:
+  = check_box_tag :only_available, 1, @available, :id => "only_available"
+  = submit_tag 'Refresh', :id => 'is_available_submit', :class => 'btn btn-primary'
+
 = form_tag(games_path, :method => "get") do
   #search-bar.input-group
     = search_field_tag :name_search, params[:name_search], placeholder: "Enter a Sport", class: "form-control", :id => "search-name-bar"
