@@ -47,6 +47,13 @@ class GamesController < ApplicationController
     @game = Game.find params[:id]
   end
 
+  def join
+    @game = Game.find params[:id]
+    @game.join_game()
+    flash[:notice] = "Successfully joined game"
+    redirect_to game_path(@game)
+  end
+
   def update
     @game = Game.find params[:id]
     valid, notice = @game.update_game(game_params())

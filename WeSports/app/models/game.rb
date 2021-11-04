@@ -24,6 +24,10 @@ class Game < ActiveRecord::Base
         return valid, notice
     end
 
+    def join_game
+        update_attributes!({:slots_taken => slots_taken + 1})
+    end
+
     def self.add_game(game_params)
         valid, notice = Game.check_valid_game(game_params)
         if valid
