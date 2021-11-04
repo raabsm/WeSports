@@ -32,13 +32,13 @@ Pages
 		Filter for available only games
 		Filter section (search bar for name and zip code)
 		Create a game button (redirect to create page)
-Game Description 
-	Table with game description (location/sport/college etc)
-	Join button (if slots are available)
-	Back button (redirect to index)
-Create (Where users can create event)
-	Form with game description for user to fill
-	Add game to the list of games table
-	Create button (redirects to game description of the game created)
-Edit Game Page
-	Form to edit different attributes
+	Game Description 
+		Table with game description (location/sport/college etc)
+		Join button (if slots are available)
+		Back button (redirect to index)
+	Create (Where users can create event)
+		Form with game description for user to fill
+		Add game to the list of games table
+		Create button (redirects to game description of the game created)
+	Edit Game Page
+		Form to edit different attributes
