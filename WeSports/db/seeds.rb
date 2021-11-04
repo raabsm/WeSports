@@ -6,10 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-games = [{:sport_name => 'Spikeball', :zipcode => '10027', :slots_to_be_filled => 4, :slots_taken => 2, :game_start_time => '31-Oct-2021 15:03:00'},
-				 {:sport_name => 'Basketball', :zipcode => '10027', :slots_to_be_filled => 10, :slots_taken => 1, :game_start_time => '1-Nov-2021 12:00:00'},
-				 {:sport_name => 'Baseball', :zipcode => '10025', :slots_to_be_filled => 20, :slots_taken => 1, :game_start_time => '5-Nov-2021 19:30:00'},
-				 {:sport_name => 'Soccer', :zipcode => '10027', :slots_to_be_filled => 8, :slots_taken => 1, :game_start_time => '31-Oct-2021 08:00:00', :game_end_time => '31-Oct-2021 10:00:00'},
+
+games = [{:sport_name => 'Bowling', :zipcode => '10000', :slots_to_be_filled => 2, :slots_taken => 2, :game_start_time => '31-Oct-2021 15:03:00'},
+				 {:sport_name => 'Archery', :zipcode => '10021', :slots_to_be_filled => 10, :slots_taken => 3, :game_start_time => '1-Nov-2021 12:00:00'},
+				 {:sport_name => 'Boxing', :zipcode => '10005', :slots_to_be_filled => 8, :slots_taken => 1, :game_start_time => '31-Oct-2021 08:00:00', :game_end_time => '31-Oct-2021 10:00:00'},
+         {:sport_name => 'Running', :zipcode => '90005', :slots_to_be_filled => 4, :slots_taken => 4, :game_start_time => '31-Oct-2021 15:03:00'},
 ]
 
 games.each do |game|

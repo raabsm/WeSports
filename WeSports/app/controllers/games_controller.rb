@@ -9,7 +9,7 @@ class GamesController < ApplicationController
   def index
     name = params[:name_search] || session[:name_search] || nil
     zip = params[:zip_search] || session[:zip_search] || nil
-    @available = params[:only_available] || session[:zip_search] || nil
+    @available = params[:only_available] || nil
 
     if params[:name_search] != session[:name_search] or params[:zip_search] != session[:zip_search] or params[:only_available] != session[:only_available]
       session[:name_search] = name
