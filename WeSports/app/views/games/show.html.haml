@@ -13,6 +13,9 @@
     Slots Left Available:
     = @game.spots_left
 
+- if @game.spots_left > 0
+  = button_to 'Join Game', join_game_path(@game), :method => :get, :confirm => 'Are you sure?', :class => 'btn btn-primary'
 = button_to 'Edit', edit_game_path(@game), :method => :get, :class => 'btn btn-primary'
 = button_to 'Delete', game_path(@game), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
 = button_to 'Back to Games list', games_path, :method => :get, :class => 'btn btn-primary'
+
