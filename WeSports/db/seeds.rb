@@ -16,3 +16,13 @@ games = [{:sport_name => 'Bowling', :zipcode => '10000', :slots_to_be_filled => 
 games.each do |game|
   Game.create!(game)
 end
+
+players = [{:name => 'Sam', :email => 'smr2218@columbia.edu'},
+           {:name => 'Jenny', :email => 'jenny@columbia.edu'},
+					 {:name => 'Tom', :email => 'Tom@columbia.edu'},
+					 {:name => 'Steph', :email => 'Steph@columbia.edu'},
+]
+
+players.each do |player|
+  Player.create!(player)
+end
