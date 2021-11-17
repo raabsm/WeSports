@@ -5,17 +5,20 @@ class Game < ActiveRecord::Base
         return players.exists?(player_id)
     end
 
+    def slots_taken
+        return players.length
+    end
+
     def player_join_game(player_id)
         player = Player.find(player_id)
         players << player
-        join_game
         return "Successfully Joined Game"
     end
 
     def spots_left
         if slots_to_be_filled.nil?
             return 0
-        elsif slots_taken.nil?
+        elsif slots_taken == 0
             return slots_to_be_filled
         else
             return slots_to_be_filled - slots_taken
@@ -35,10 +38,6 @@ class Game < ActiveRecord::Base
         end
 
         return valid, notice
-    end
-
-    def join_game
-        update_attributes!({:slots_taken => slots_taken + 1})
     end
 
     def self.add_game(game_params)

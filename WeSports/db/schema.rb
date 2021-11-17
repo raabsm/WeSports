@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20211117210448) do
     t.string   "sport_name"
     t.string   "zipcode"
     t.integer  "slots_to_be_filled"
-    t.integer  "slots_taken"
     t.datetime "game_start_time"
     t.datetime "game_end_time"
     t.datetime "created_at"
