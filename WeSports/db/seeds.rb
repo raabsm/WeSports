@@ -17,10 +17,10 @@ games.each do |game|
   Game.create!(game)
 end
 
-players = [{:name => 'Sam', :email => 'smr2218@columbia.edu'},
-           {:name => 'Jenny', :email => 'jenny@columbia.edu'},
-					 {:name => 'Tom', :email => 'Tom@columbia.edu'},
-					 {:name => 'Steph', :email => 'Steph@columbia.edu'},
+players = [{:username => 'Sam', :email => 'smr2218@columbia.edu'},
+           {:username => 'Jenny', :email => 'jenny@columbia.edu'},
+					 {:username => 'Tom', :email => 'Tom@columbia.edu'},
+					 {:username => 'Steph', :email => 'Steph@columbia.edu'},
 ]
 
 players.each do |player|

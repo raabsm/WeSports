@@ -7,6 +7,10 @@ class GamesController < ApplicationController
   end
 
   def index
+    @player = Player.find(session[:user_id])
+    if @player.nil?
+      redirect_to '/login'
+    end
     name = params[:name_search] || session[:name_search] || nil
     zip = params[:zip_search] || session[:zip_search] || nil
     @available = params[:only_available] || nil
