@@ -51,4 +51,16 @@ class Game < ActiveRecord::Base
         end
         return valid, notice
     end
+
+    def self.check_game_exist(game_id)
+        if exists?(id: game_id)
+            notice = ""
+            valid = true
+        else
+            notice = "Error: Game does not exist"
+            valid = false
+        end
+        return valid, notice
+    end
+
 end
