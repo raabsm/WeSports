@@ -74,9 +74,9 @@ class GamesController < ApplicationController
   def join
     @game = Game.find params[:id]
     @game.join_game()
-    player_id = params[:player][:id]
+    player_id = session[:user_id]
     valid, notice = PlayerGame.add_pair(params[:id], player_id)
-    flash[:notice] = "Successfully joined game"
+    flash[:notice] = notice
     redirect_to game_path(@game)
   end
 

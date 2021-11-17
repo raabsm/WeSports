@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(version: 20211117032655) do
     t.datetime "updated_at"
   end
 
+  create_table "player_games", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "game_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string   "username"
     t.string   "email"
