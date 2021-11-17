@@ -1,11 +1,12 @@
 class CreatePlayers < ActiveRecord::Migration
   def change
     create_table :players do |t|
-      t.string :name
+      t.string :username
       t.string :email
-      t.string :google_id
+      t.string :uid
+      t.string :provider
 
-      t.timestamps null: false
+      t.timestamps
     end
   end
 end

@@ -142,3 +142,1738 @@ ActiveRecord::ConnectionNotEstablished (No connection pool for ActiveRecord::Bas
   Rendered C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
   Rendered C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
   Rendered C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (58.0ms)
+  [1m[36m (69.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (63.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateGames (20211101224347)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/codio/workspace/WeSports/WeSports/db/migrate/20211101224347_create_games.rb:10)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sport_name" varchar, "zipcode" varchar, "slots_to_be_filled" integer, "slots_taken" integer, "game_start_time" datetime, "game_end_time" datetime, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211101224347"]]
+  [1m[35m (67.0ms)[0m  commit transaction
+Migrating to CreatePlayers (20211111201013)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "players" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "google_id" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211111201013"]]
+  [1m[35m (66.3ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["sport_name", "Bowling"], ["zipcode", "10000"], ["slots_to_be_filled", 2], ["slots_taken", 2], ["game_start_time", "2021-10-31 15:03:00.000000"], ["created_at", "2021-11-17 02:51:10.815531"], ["updated_at", "2021-11-17 02:51:10.815531"]]
+  [1m[35m (68.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["sport_name", "Archery"], ["zipcode", "10021"], ["slots_to_be_filled", 10], ["slots_taken", 3], ["game_start_time", "2021-11-01 12:00:00.000000"], ["created_at", "2021-11-17 02:51:10.887148"], ["updated_at", "2021-11-17 02:51:10.887148"]]
+  [1m[36m (67.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "game_end_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["sport_name", "Boxing"], ["zipcode", "10005"], ["slots_to_be_filled", 8], ["slots_taken", 1], ["game_start_time", "2021-10-31 08:00:00.000000"], ["game_end_time", "2021-10-31 10:00:00.000000"], ["created_at", "2021-11-17 02:51:10.956873"], ["updated_at", "2021-11-17 02:51:10.956873"]]
+  [1m[35m (60.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["sport_name", "Running"], ["zipcode", "90005"], ["slots_to_be_filled", 4], ["slots_taken", 4], ["game_start_time", "2021-10-31 15:03:00.000000"], ["created_at", "2021-11-17 02:51:11.019399"], ["updated_at", "2021-11-17 02:51:11.019399"]]
+  [1m[36m (65.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "players" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Sam"], ["email", "smr2218@columbia.edu"], ["created_at", "2021-11-17 02:51:11.090104"], ["updated_at", "2021-11-17 02:51:11.090104"]]
+  [1m[35m (61.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "players" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Jenny"], ["email", "jenny@columbia.edu"], ["created_at", "2021-11-17 02:51:11.152908"], ["updated_at", "2021-11-17 02:51:11.152908"]]
+  [1m[36m (62.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "players" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Tom"], ["email", "Tom@columbia.edu"], ["created_at", "2021-11-17 02:51:11.217448"], ["updated_at", "2021-11-17 02:51:11.217448"]]
+  [1m[35m (70.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "players" ("name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Steph"], ["email", "Steph@columbia.edu"], ["created_at", "2021-11-17 02:51:11.288973"], ["updated_at", "2021-11-17 02:51:11.288973"]]
+  [1m[36m (63.4ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 02:51:25 +0000
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 02:51:25 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.7ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (20.4ms)
+Completed 200 OK in 363ms (Views: 351.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.self-ac4347b135ab8935f2dd20089f2acc8bec1d6b2ad528a80fcb03cd445dbd4d27.js?body=1" for 160.39.227.228 at 2021-11-17 02:51:25 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for 160.39.227.228 at 2021-11-17 02:51:25 +0000
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for 160.39.227.228 at 2021-11-17 02:51:25 +0000
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 160.39.227.228 at 2021-11-17 02:51:25 +0000
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 02:56:23 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.7ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (20.8ms)
+Completed 200 OK in 297ms (Views: 284.5ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 02:56:25 +0000
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 02:59:43 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.8ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (21.8ms)
+Completed 200 OK in 296ms (Views: 283.5ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 02:59:45 +0000
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 02:59:50 +0000
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 02:59:51 +0000
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (1.9ms)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 02:59:52 +0000
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:00:55 +0000
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:00:55 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.7ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (19.8ms)
+Completed 200 OK in 266ms (Views: 254.6ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:00:57 +0000
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:02:09 +0000
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:06:00 +0000
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:06:00 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.9ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (22.4ms)
+Completed 200 OK in 309ms (Views: 295.6ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:06:02 +0000
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:07:12 +0000
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:08:04 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=3bce02544675aad6e0b7872da308554346843594cb6acfa0&code=4%2F0AX4XfWjDM2Bvw9LaGw51mmLRQuQfP7zjkf2FKe4IXRITa42gkfBIkGUgJCekegbf1FqDww&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:08:08 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"3bce02544675aad6e0b7872da308554346843594cb6acfa0", "code"=>"4/0AX4XfWjDM2Bvw9LaGw51mmLRQuQfP7zjkf2FKe4IXRITa42gkfBIkGUgJCekegbf1FqDww", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+NameError (uninitialized constant SessionsController::User):
+  app/controllers/sessions_controller.rb:26:in `omniauth'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.3ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (14.9ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:14:06 +0000
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:14:06 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (14.5ms)
+Completed 200 OK in 185ms (Views: 177.5ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:14:08 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=8b8714e5d3636e7d47f92d8dd82b1b5d009a12449066c442&code=4%2F0AX4XfWjDvVMNBnEkAbvF0Rn0j_rbMMSdQCJg2Rh6fMRigeMP1rbvjFLyPamasusKUCcphA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:14:11 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"8b8714e5d3636e7d47f92d8dd82b1b5d009a12449066c442", "code"=>"4/0AX4XfWjDvVMNBnEkAbvF0Rn0j_rbMMSdQCJg2Rh6fMRigeMP1rbvjFLyPamasusKUCcphA", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+NameError (uninitialized constant ApplicationRecord):
+  app/models/player.rb:1:in `<top (required)>'
+  app/controllers/sessions_controller.rb:26:in `omniauth'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (11.6ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:14:45 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (16.2ms)
+Completed 200 OK in 190ms (Views: 182.1ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:14:46 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=3a7a15085de31039a8a5f117cba6a10d2160529f5043381c&code=4%2F0AX4XfWjd0wXKyU0765yFDpukB6nT5i58lQlqNtRBKTF-w1mtxA6H2xNuFFlucXFKDg72Jg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:14:49 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"3a7a15085de31039a8a5f117cba6a10d2160529f5043381c", "code"=>"4/0AX4XfWjd0wXKyU0765yFDpukB6nT5i58lQlqNtRBKTF-w1mtxA6H2xNuFFlucXFKDg72Jg", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/userinfo.profile", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+NameError (uninitialized constant ApplicationRecord):
+  app/models/player.rb:1:in `<top (required)>'
+  app/controllers/sessions_controller.rb:26:in `omniauth'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (13.6ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["sport_name", "Bowling"], ["zipcode", "10000"], ["slots_to_be_filled", 2], ["slots_taken", 2], ["game_start_time", "2021-10-31 15:03:00.000000"], ["created_at", "2021-11-17 03:15:04.067767"], ["updated_at", "2021-11-17 03:15:04.067767"]]
+  [1m[35m (66.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["sport_name", "Archery"], ["zipcode", "10021"], ["slots_to_be_filled", 10], ["slots_taken", 3], ["game_start_time", "2021-11-01 12:00:00.000000"], ["created_at", "2021-11-17 03:15:04.135922"], ["updated_at", "2021-11-17 03:15:04.135922"]]
+  [1m[36m (75.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "game_end_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["sport_name", "Boxing"], ["zipcode", "10005"], ["slots_to_be_filled", 8], ["slots_taken", 1], ["game_start_time", "2021-10-31 08:00:00.000000"], ["game_end_time", "2021-10-31 10:00:00.000000"], ["created_at", "2021-11-17 03:15:04.212642"], ["updated_at", "2021-11-17 03:15:04.212642"]]
+  [1m[35m (62.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["sport_name", "Running"], ["zipcode", "90005"], ["slots_to_be_filled", 4], ["slots_taken", 4], ["game_start_time", "2021-10-31 15:03:00.000000"], ["created_at", "2021-11-17 03:15:04.276980"], ["updated_at", "2021-11-17 03:15:04.276980"]]
+  [1m[36m (67.6ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:15:11 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (16.3ms)
+Completed 200 OK in 194ms (Views: 186.5ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:15:16 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=e47b32cc17feda3ec4e61d8a3b28f7cf4d134762234ef828&code=4%2F0AX4XfWjiqCGmWyxZDNumcxIaiWXnsMq5J7j7lzD_YZlyhRb9vlkXZPgSFEY90kBL5sW4mQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:15:19 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"e47b32cc17feda3ec4e61d8a3b28f7cf4d134762234ef828", "code"=>"4/0AX4XfWjiqCGmWyxZDNumcxIaiWXnsMq5J7j7lzD_YZlyhRb9vlkXZPgSFEY90kBL5sW4mQ", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/userinfo.profile", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+NameError (uninitialized constant ApplicationRecord):
+  app/models/player.rb:1:in `<top (required)>'
+  app/controllers/sessions_controller.rb:26:in `omniauth'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.3ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (11.8ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["sport_name", "Bowling"], ["zipcode", "10000"], ["slots_to_be_filled", 2], ["slots_taken", 2], ["game_start_time", "2021-10-31 15:03:00.000000"], ["created_at", "2021-11-17 03:16:13.178945"], ["updated_at", "2021-11-17 03:16:13.178945"]]
+  [1m[35m (64.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["sport_name", "Archery"], ["zipcode", "10021"], ["slots_to_be_filled", 10], ["slots_taken", 3], ["game_start_time", "2021-11-01 12:00:00.000000"], ["created_at", "2021-11-17 03:16:13.244745"], ["updated_at", "2021-11-17 03:16:13.244745"]]
+  [1m[36m (68.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "game_end_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["sport_name", "Boxing"], ["zipcode", "10005"], ["slots_to_be_filled", 8], ["slots_taken", 1], ["game_start_time", "2021-10-31 08:00:00.000000"], ["game_end_time", "2021-10-31 10:00:00.000000"], ["created_at", "2021-11-17 03:16:13.314650"], ["updated_at", "2021-11-17 03:16:13.314650"]]
+  [1m[35m (72.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("sport_name", "zipcode", "slots_to_be_filled", "slots_taken", "game_start_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["sport_name", "Running"], ["zipcode", "90005"], ["slots_to_be_filled", 4], ["slots_taken", 4], ["game_start_time", "2021-10-31 15:03:00.000000"], ["created_at", "2021-11-17 03:16:13.388394"], ["updated_at", "2021-11-17 03:16:13.388394"]]
+  [1m[36m (74.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:16:24 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (17.6ms)
+Completed 200 OK in 189ms (Views: 181.2ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:16:25 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=6506c7b4b328c5f726bc8d19c31cb7b806e7d4df54e8128a&code=4%2F0AX4XfWhIIirh90bqm8LBdBUl0xyVMoKJ09v9_ngKiSouvr8ZD_j_C1anf3zicJY-srs52g&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:16:28 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"6506c7b4b328c5f726bc8d19c31cb7b806e7d4df54e8128a", "code"=>"4/0AX4XfWhIIirh90bqm8LBdBUl0xyVMoKJ09v9_ngKiSouvr8ZD_j_C1anf3zicJY-srs52g", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[35mPlayer Load (0.2ms)[0m  SELECT  "players".* FROM "players" WHERE "players"."uid" = '113426808349753538021' AND "players"."provider" = 'google_oauth2' LIMIT 1
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.3ms)
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: players.uid: SELECT  "players".* FROM "players" WHERE "players"."uid" = '113426808349753538021' AND "players"."provider" = 'google_oauth2' LIMIT 1):
+  app/models/player.rb:7:in `create_from_omniauth'
+  app/controllers/sessions_controller.rb:26:in `omniauth'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.7ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (12.5ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddUidAndProviderToPlayers (20211117031826)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "players" ADD "uid" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "players" ADD "provider" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211117031826"]]
+  [1m[35m (68.2ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:18:47 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (17.2ms)
+Completed 200 OK in 192ms (Views: 184.1ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:18:48 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=2d8608a5a899fb7ef2338fcfbe2f87b0b54ad08e2d700c61&code=4%2F0AX4XfWikO0ez8L7DY1e3CtlW_MTVSoAWfk8LSFvD4wmsrw1QocJx6QNM_DXn5l7WDsMyAA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:18:50 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"2d8608a5a899fb7ef2338fcfbe2f87b0b54ad08e2d700c61", "code"=>"4/0AX4XfWikO0ez8L7DY1e3CtlW_MTVSoAWfk8LSFvD4wmsrw1QocJx6QNM_DXn5l7WDsMyAA", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[35mPlayer Load (0.1ms)[0m  SELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `username=' for #<Player:0x00007f5adddc2de8>):
+  app/models/player.rb:8:in `block in create_from_omniauth'
+  app/models/player.rb:7:in `create_from_omniauth'
+  app/controllers/sessions_controller.rb:26:in `omniauth'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (12.4ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:21:07 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.3ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (20.5ms)
+Completed 200 OK in 260ms (Views: 251.2ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:21:08 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=ccc79ccc2ec6de8b998a231b78536eecb407d6d941c47bef&code=4%2F0AX4XfWiSNiCsfESjRTEX-lpU0dfj7nE7Eh2e5Kce8B5903PvVAkJyA3X_iHK38bbeVp82g&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:21:11 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"ccc79ccc2ec6de8b998a231b78536eecb407d6d941c47bef", "code"=>"4/0AX4XfWiSNiCsfESjRTEX-lpU0dfj7nE7Eh2e5Kce8B5903PvVAkJyA3X_iHK38bbeVp82g", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[35mPlayer Load (0.1ms)[0m  SELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+Completed 500 Internal Server Error in 245ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `password_digest=' for #<Player:0x00007fcbc9dc9398>):
+  app/models/player.rb:10:in `block in create_from_omniauth'
+  app/models/player.rb:7:in `create_from_omniauth'
+  app/controllers/sessions_controller.rb:26:in `omniauth'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (12.4ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:21:40 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=ef549a8d645e80714d219820275ad84277be7b292b5acb42&code=4%2F0AX4XfWho2_TfRHTa_ZYkhGKy1osmQpk1Co-IDtfbM2F34eAI_UjBIMWLnxyEJDLdqynAxA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:21:42 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"ef549a8d645e80714d219820275ad84277be7b292b5acb42", "code"=>"4/0AX4XfWho2_TfRHTa_ZYkhGKy1osmQpk1Co-IDtfbM2F34eAI_UjBIMWLnxyEJDLdqynAxA", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.5ms)
+
+NoMethodError (undefined method `username' for #<Player:0x000055e3f7bb74d0>):
+  app/models/player.rb:6:in `create_from_omniauth'
+  app/controllers/sessions_controller.rb:26:in `omniauth'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (12.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (23.8ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:22:00 +0000
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:22:00 +0000
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (10.4ms)
+Completed 200 OK in 177ms (Views: 175.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:22:02 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=ac85a5c69b8304f81dca346b94ac91bc078d5e5c8ed945d0&code=4%2F0AX4XfWhE5rTw6ng_i-edQcL0_YKDYjgCHZG6ttONQxz7OMeKFVBfRx-Ovf1Dvbup7X9BIw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:22:04 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"ac85a5c69b8304f81dca346b94ac91bc078d5e5c8ed945d0", "code"=>"4/0AX4XfWhE5rTw6ng_i-edQcL0_YKDYjgCHZG6ttONQxz7OMeKFVBfRx-Ovf1Dvbup7X9BIw", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `username' for #<Player:0x00007f49bdcb1048>):
+  app/models/player.rb:6:in `create_from_omniauth'
+  app/controllers/sessions_controller.rb:26:in `omniauth'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.4ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (9.7ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (21.5ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameNameToUsernames (20211117032655)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "aplayers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "google_id" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "provider" varchar) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "players"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "aplayers" ("id","username","email","google_id","created_at","updated_at","uid","provider") VALUES (1, 'Sam', 'smr2218@columbia.edu', NULL, '2021-11-17 02:51:11.090104', '2021-11-17 02:51:11.090104', NULL, NULL)[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "aplayers" ("id","username","email","google_id","created_at","updated_at","uid","provider") VALUES (2, 'Jenny', 'jenny@columbia.edu', NULL, '2021-11-17 02:51:11.152908', '2021-11-17 02:51:11.152908', NULL, NULL)
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "aplayers" ("id","username","email","google_id","created_at","updated_at","uid","provider") VALUES (3, 'Tom', 'Tom@columbia.edu', NULL, '2021-11-17 02:51:11.217448', '2021-11-17 02:51:11.217448', NULL, NULL)[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "aplayers" ("id","username","email","google_id","created_at","updated_at","uid","provider") VALUES (4, 'Steph', 'Steph@columbia.edu', NULL, '2021-11-17 02:51:11.288973', '2021-11-17 02:51:11.288973', NULL, NULL)
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "players"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "players" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "google_id" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "provider" varchar) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "aplayers"[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "players" ("id","username","email","google_id","created_at","updated_at","uid","provider") VALUES (1, 'Sam', 'smr2218@columbia.edu', NULL, '2021-11-17 02:51:11.090104', '2021-11-17 02:51:11.090104', NULL, NULL)
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "players" ("id","username","email","google_id","created_at","updated_at","uid","provider") VALUES (2, 'Jenny', 'jenny@columbia.edu', NULL, '2021-11-17 02:51:11.152908', '2021-11-17 02:51:11.152908', NULL, NULL)[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "players" ("id","username","email","google_id","created_at","updated_at","uid","provider") VALUES (3, 'Tom', 'Tom@columbia.edu', NULL, '2021-11-17 02:51:11.217448', '2021-11-17 02:51:11.217448', NULL, NULL)
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "players" ("id","username","email","google_id","created_at","updated_at","uid","provider") VALUES (4, 'Steph', 'Steph@columbia.edu', NULL, '2021-11-17 02:51:11.288973', '2021-11-17 02:51:11.288973', NULL, NULL)[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "aplayers"
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211117032655"]]
+  [1m[35m (89.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:27:37 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (14.9ms)
+Completed 200 OK in 191ms (Views: 183.7ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:27:38 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=3df9ce222597ea3ff27e4942b670f9260f8a7d429251db60&code=4%2F0AX4XfWjDTQCxGOFStuLMooxb-kxiBm9qlsTbnpLZ0hT7MDWeOYorw2V3TfF3__aZf9gmag&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:27:40 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"3df9ce222597ea3ff27e4942b670f9260f8a7d429251db60", "code"=>"4/0AX4XfWjDTQCxGOFStuLMooxb-kxiBm9qlsTbnpLZ0hT7MDWeOYorw2V3TfF3__aZf9gmag", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[35mPlayer Load (0.2ms)[0m  SELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mPlayer Exists (0.1ms)[0m  SELECT  1 AS one FROM "players" WHERE "players"."email" = 'stephbysteph16@gmail.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "players" ("uid", "provider", "username", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"], ["username", "Stephane"], ["email", "stephbysteph16@gmail.com"], ["created_at", "2021-11-17 03:27:40.847312"], ["updated_at", "2021-11-17 03:27:40.847312"]]
+  [1m[35m (48.3ms)[0m  commit transaction
+  [1m[36mPlayer Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "players" WHERE ("players"."email" = 'stephbysteph16@gmail.com' AND "players"."id" != 5) LIMIT 1[0m
+Completed 500 Internal Server Error in 90ms (ActiveRecord: 49.3ms)
+
+NameError (undefined local variable or method `new_shoe_path' for #<SessionsController:0x00007f1bfdd75b70>):
+  app/controllers/sessions_controller.rb:29:in `omniauth'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.3ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (24.9ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:28:55 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.3ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (15.4ms)
+Completed 200 OK in 205ms (Views: 196.8ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:28:56 +0000
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (2.5ms)
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:28:57 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=78ec127ba549a25b4ba20c4ccb42151f12ee4b74f66e9f83&code=4%2F0AX4XfWjCyjkREoMeFp4xO7sgIOU_Tg8qevdS8Z0RITnfJKcCzcWLidAGDey5YhYUrE5XLw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:29:00 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"78ec127ba549a25b4ba20c4ccb42151f12ee4b74f66e9f83", "code"=>"4/0AX4XfWjCyjkREoMeFp4xO7sgIOU_Tg8qevdS8Z0RITnfJKcCzcWLidAGDey5YhYUrE5XLw", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[35mPlayer Exists (0.1ms)[0m  SELECT  1 AS one FROM "players" WHERE ("players"."email" = 'stephbysteph16@gmail.com' AND "players"."id" != 5) LIMIT 1
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 16ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:29:00 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (2.5ms)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/games/1" for 160.39.227.228 at 2021-11-17 03:29:40 +0000
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mGame Load (0.3ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered games/show.html.haml within layouts/application (3.5ms)
+Completed 200 OK in 17ms (Views: 10.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:29:43 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.3ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (3.6ms)
+Completed 200 OK in 11ms (Views: 10.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:34:04 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (1.4ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (15.4ms)
+Completed 200 OK in 200ms (Views: 191.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:34:09 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (1.4ms)
+Completed 200 OK in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:34:10 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=f9d8194e9ec2ccdcbad1d6b62941b33d03546ca404aa72f3&code=4%2F0AX4XfWiQqQgfDgbXfxe7cFidfep_QWDhwC_jXTZL0_1s61LwBmbf2c7gEZXC2trnDevmwQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:34:13 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"f9d8194e9ec2ccdcbad1d6b62941b33d03546ca404aa72f3", "code"=>"4/0AX4XfWiQqQgfDgbXfxe7cFidfep_QWDhwC_jXTZL0_1s61LwBmbf2c7gEZXC2trnDevmwQ", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[35mPlayer Load (0.1ms)[0m  SELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[36mPlayer Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "players" WHERE ("players"."email" = 'stephbysteph16@gmail.com' AND "players"."id" != 5) LIMIT 1[0m
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 17ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:34:13 +0000
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (2.4ms)
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:34:25 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (0.4ms)
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:34:35 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (1.4ms)
+Completed 200 OK in 6ms (Views: 5.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:34:38 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=db88ead087e3010761b7dc241b791de0da24eca89d197bbe&code=4%2F0AX4XfWgSHx4Ix66VudjmMdxryzWH3kULjWbQPq0NRv4XYC6uUYCXjSNGh0nFSPJ9MXKf_A&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:34:40 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"db88ead087e3010761b7dc241b791de0da24eca89d197bbe", "code"=>"4/0AX4XfWgSHx4Ix66VudjmMdxryzWH3kULjWbQPq0NRv4XYC6uUYCXjSNGh0nFSPJ9MXKf_A", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/userinfo.profile", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[35mPlayer Exists (0.2ms)[0m  SELECT  1 AS one FROM "players" WHERE ("players"."email" = 'stephbysteph16@gmail.com' AND "players"."id" != 5) LIMIT 1
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:34:40 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (3.6ms)
+Completed 200 OK in 12ms (Views: 11.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/games?utf8=%E2%9C%93&only_available=1&commit=Refresh" for 160.39.227.228 at 2021-11-17 03:35:26 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"utf8"=>"✓", "only_available"=>"1", "commit"=>"Refresh"}
+Redirected to https://page-prime-3000.codio.io/games?only_available=1
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/games?only_available=1" for 160.39.227.228 at 2021-11-17 03:35:26 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"only_available"=>"1"}
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games" WHERE (slots_to_be_filled != slots_taken)
+  Rendered games/index.html.haml within layouts/application (4.7ms)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/games?utf8=%E2%9C%93&commit=Refresh" for 160.39.227.228 at 2021-11-17 03:35:30 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"Refresh"}
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:35:30 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (2.5ms)
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/games?utf8=%E2%9C%93&commit=Refresh" for 160.39.227.228 at 2021-11-17 03:35:33 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"Refresh"}
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (2.3ms)
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/games?utf8=%E2%9C%93&only_available=1&commit=Refresh" for 160.39.227.228 at 2021-11-17 03:35:34 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"utf8"=>"✓", "only_available"=>"1", "commit"=>"Refresh"}
+Redirected to https://page-prime-3000.codio.io/games?only_available=1
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/games?only_available=1" for 160.39.227.228 at 2021-11-17 03:35:34 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"only_available"=>"1"}
+  [1m[36mGame Load (0.2ms)[0m  [1mSELECT "games".* FROM "games" WHERE (slots_to_be_filled != slots_taken)[0m
+  Rendered games/index.html.haml within layouts/application (1.9ms)
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/games?utf8=%E2%9C%93&commit=Refresh" for 160.39.227.228 at 2021-11-17 03:35:35 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"Refresh"}
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:35:35 +0000
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (3.2ms)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:35:42 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (0.4ms)
+Completed 200 OK in 7ms (Views: 6.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:35:43 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=4baf585beb838add25a55a43fbc8e44cc1898819c2600535&code=4%2F0AX4XfWgXcbtAhtku0lKSDnyMiURF5m4x1yshfSmfuk9S-4MvTbh6ozhZsnPt_ZZmyHpZ1w&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:35:45 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"4baf585beb838add25a55a43fbc8e44cc1898819c2600535", "code"=>"4/0AX4XfWgXcbtAhtku0lKSDnyMiURF5m4x1yshfSmfuk9S-4MvTbh6ozhZsnPt_ZZmyHpZ1w", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[35mPlayer Exists (0.1ms)[0m  SELECT  1 AS one FROM "players" WHERE ("players"."email" = 'stephbysteph16@gmail.com' AND "players"."id" != 5) LIMIT 1
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:35:45 +0000
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (2.3ms)
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:38:04 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (8.1ms)
+Completed 200 OK in 187ms (Views: 186.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:38:06 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=7f0ed7024e8c617cfbb6c1f0208f4fb39d63c938eec35f51&code=4%2F0AX4XfWifS5Plhopmq9Q65lYp8Y_NBHmimZYjoIIT9FWwmRzcynRHeFtOJ2KTBS8zw5ECwQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:38:08 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"7f0ed7024e8c617cfbb6c1f0208f4fb39d63c938eec35f51", "code"=>"4/0AX4XfWifS5Plhopmq9Q65lYp8Y_NBHmimZYjoIIT9FWwmRzcynRHeFtOJ2KTBS8zw5ECwQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[36mPlayer Load (0.2ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[35mPlayer Exists (0.1ms)[0m  SELECT  1 AS one FROM "players" WHERE ("players"."email" = 'stephbysteph16@gmail.com' AND "players"."id" != 5) LIMIT 1
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 21ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:38:09 +0000
+Processing by GamesController#index as HTML
+  Rendered games/index.html.haml within layouts/application (5.1ms)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `username' for #<Class:0x00007f75b5d09238>):
+    10: -#     = check_box_tag "ratings[#{rating}]", 1, @selected_ratings.include?(rating), :id => "ratings_#{rating}"
+    11: -#   = submit_tag 'Refresh', :id => 'ratings_submit', :class => 'btn btn-primary'
+    12: 
+    13: %h1 Welcome #{@player.username}
+    14: 
+    15: = form_tag games_path, :method => :get, :id => 'available_form' do
+    16:   Only available games:
+  app/views/games/index.html.haml:13:in `_app_views_games_index_html_haml__2381507885503908908_70071770074720'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.0ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (15.5ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:39:22 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=501cac2250cd1a880e298b2c4cae80011e3906b42cad78ee&code=4%2F0AX4XfWikZJX1iEU2-9CwosYqvjq4-WEVwkaxHAMjMIlAUsiv6g2-0y-Nv79z3VkmFtHDIg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:39:25 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"501cac2250cd1a880e298b2c4cae80011e3906b42cad78ee", "code"=>"4/0AX4XfWikZJX1iEU2-9CwosYqvjq4-WEVwkaxHAMjMIlAUsiv6g2-0y-Nv79z3VkmFtHDIg", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[35mPlayer Exists (0.1ms)[0m  SELECT  1 AS one FROM "players" WHERE ("players"."email" = 'stephbysteph16@gmail.com' AND "players"."id" != 5) LIMIT 1
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 21ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:39:25 +0000
+Processing by GamesController#index as HTML
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (10.0ms)
+Completed 200 OK in 220ms (Views: 216.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:41:42 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (7.9ms)
+Completed 200 OK in 188ms (Views: 188.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:41:44 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=806b1dae785a9a5d015a368a69999f9a2424aa5ea2aa8d0c&code=4%2F0AX4XfWjCoJ_oY_XRZiuYcWjbFS2n4CZ3dhmsdt0RGV6DTlDqs5m_KLFIlXxo1vSppQARjA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:41:46 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"806b1dae785a9a5d015a368a69999f9a2424aa5ea2aa8d0c", "code"=>"4/0AX4XfWjCoJ_oY_XRZiuYcWjbFS2n4CZ3dhmsdt0RGV6DTlDqs5m_KLFIlXxo1vSppQARjA", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/userinfo.profile", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[36mPlayer Load (0.2ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[35mPlayer Exists (0.1ms)[0m  SELECT  1 AS one FROM "players" WHERE ("players"."email" = 'stephbysteph16@gmail.com' AND "players"."id" != 5) LIMIT 1
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 43ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:41:46 +0000
+Processing by GamesController#index as HTML
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (7.8ms)
+Completed 200 OK in 15ms (Views: 11.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/games?utf8=%E2%9C%93&only_available=1&commit=Refresh" for 160.39.227.228 at 2021-11-17 03:42:31 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"utf8"=>"✓", "only_available"=>"1", "commit"=>"Refresh"}
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+Redirected to https://page-prime-3000.codio.io/games?only_available=1
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/games?only_available=1" for 160.39.227.228 at 2021-11-17 03:42:31 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"only_available"=>"1"}
+  [1m[35mPlayer Load (0.1ms)[0m  SELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mGame Load (0.1ms)[0m  [1mSELECT "games".* FROM "games" WHERE (slots_to_be_filled != slots_taken)[0m
+  Rendered games/index.html.haml within layouts/application (4.7ms)
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:43:01 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (8.8ms)
+Completed 200 OK in 241ms (Views: 240.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:43:03 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=1a1cd4e66fcb31140d659dfb2e2b430e4bfcbed7fe03b4f4&code=4%2F0AX4XfWj7d68-OrhGS85pgfnd8CKm9Wv8DMhanBCnh6sPlj7MdxyTIfCtIZdBGIXEvUQfPw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:43:05 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"1a1cd4e66fcb31140d659dfb2e2b430e4bfcbed7fe03b4f4", "code"=>"4/0AX4XfWj7d68-OrhGS85pgfnd8CKm9Wv8DMhanBCnh6sPlj7MdxyTIfCtIZdBGIXEvUQfPw", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[36mPlayer Load (0.2ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[35mPlayer Exists (0.1ms)[0m  SELECT  1 AS one FROM "players" WHERE ("players"."email" = 'stephbysteph16@gmail.com' AND "players"."id" != 5) LIMIT 1
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 26ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:43:05 +0000
+Processing by GamesController#index as HTML
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:43:05 +0000
+Processing by GamesController#index as HTML
+  [1m[35mPlayer Load (0.1ms)[0m  SELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mGame Load (0.1ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  Rendered games/index.html.haml within layouts/application (29.0ms)
+Completed 200 OK in 36ms (Views: 33.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:45:17 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (Illegal nesting: nesting within plain text is illegal.):
+     7: </head>
+     8: 
+     9: <body>
+    10:   <h1>Welcome to We Sports!</h1>
+    11: 
+    12:   <div id='login_button'>
+    13:     = button_to "Log in with your Google account", '/auth/google_oauth2'
+  app/views/games/login.html.haml:10
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (18.6ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:45:55 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (Illegal nesting: nesting within plain text is illegal.):
+    10: <body>
+    11:   
+    12: 
+    13:   <div id='login_button'>
+    14:     = button_to "Log in with your Google account", '/auth/google_oauth2'
+    15:   </div>
+    16: </body>
+  app/views/games/login.html.haml:13
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (12.9ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:46:06 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (Illegal nesting: nesting within plain text is illegal.):
+    10: <body>
+    11:   
+    12: 
+    13:   <div id='login_button'>
+    14:     = button_to "Log in with your Google account", '/auth/google_oauth2'
+    15:   </div>
+    16: </body>
+  app/views/games/login.html.haml:13
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (6.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (23.4ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:46:32 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (Illegal nesting: nesting within plain text is illegal.):
+     7: 
+     8: 
+     9: <body>
+    10:   <h1>Welcome to We Sports!</h1>
+    11: 
+    12:   <div id='login_button'>
+    13:     = button_to "Log in with your Google account", '/auth/google_oauth2'
+  app/views/games/login.html.haml:10
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.3ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (21.3ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:47:16 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (Illegal nesting: nesting within plain text is illegal.):
+    1: 
+    2: <body>
+    3:   <style>
+    4:   h1 {text-align: center;}
+    5:   p {text-align: center;}
+    6:   div {text-align: center;}
+  app/views/games/login.html.haml:3
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (19.3ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:47:43 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (Illegal nesting: nesting within plain text is illegal.):
+     9: </head>
+    10: 
+    11: <body>
+    12:   <h1>Welcome to We Sports!</h1>
+    13: 
+    14:   <div id='login_button'>
+    15:     = button_to "Log in with your Google account", '/auth/google_oauth2'
+  app/views/games/login.html.haml:12
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.4ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (6.0ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (20.0ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:47:46 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (Illegal nesting: nesting within plain text is illegal.):
+     9: </head>
+    10: 
+    11: <body>
+    12:   <h1>Welcome to We Sports!</h1>
+    13: 
+    14:   <div id='login_button'>
+    15:     = button_to "Log in with your Google account", '/auth/google_oauth2'
+  app/views/games/login.html.haml:12
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (15.3ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:50:13 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (2.1ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (Illegal nesting: nesting within plain text is illegal.):
+    12: </head>
+    13: 
+    14: <body>
+    15:   <h1>Welcome to We Sports!</h1>
+    16: 
+    17:   <div id='login_button'>
+    18:     = button_to "Log in with your Google account", '/auth/google_oauth2'
+  app/views/games/login.html.haml:15
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.3ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (6.0ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (19.7ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:50:16 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (Illegal nesting: nesting within plain text is illegal.):
+    12: </head>
+    13: 
+    14: <body>
+    15:   <h1>Welcome to We Sports!</h1>
+    16: 
+    17:   <div id='login_button'>
+    18:     = button_to "Log in with your Google account", '/auth/google_oauth2'
+  app/views/games/login.html.haml:15
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (14.0ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:52:25 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (8.1ms)
+Completed 200 OK in 222ms (Views: 222.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-9e2ccedca590b474450ff2d8932e585fdc6b95b3bfecb9aa16fe9a9d9f7b74aa.css?body=1" for 160.39.227.228 at 2021-11-17 03:52:25 +0000
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:52:27 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=bc59bbc2893ed988a4f877ce4f547ac9e33ad234c6fd958a&code=4%2F0AX4XfWgRRAFt4pxHkBb3bu7t44kboYFebNIoOn_-QJnQX7bqu4HygTsMsm0ouRv8-R9yTg&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:52:30 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"bc59bbc2893ed988a4f877ce4f547ac9e33ad234c6fd958a", "code"=>"4/0AX4XfWgRRAFt4pxHkBb3bu7t44kboYFebNIoOn_-QJnQX7bqu4HygTsMsm0ouRv8-R9yTg", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[36mPlayer Load (0.2ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[35mPlayer Exists (0.1ms)[0m  SELECT  1 AS one FROM "players" WHERE ("players"."email" = 'stephbysteph16@gmail.com' AND "players"."id" != 5) LIMIT 1
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 24ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:52:30 +0000
+Processing by GamesController#index as HTML
+  [1m[36mPlayer Load (0.2ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (32.0ms)
+Completed 200 OK in 41ms (Views: 36.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/games?utf8=%E2%9C%93&only_available=1&commit=Refresh" for 160.39.227.228 at 2021-11-17 03:52:36 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"utf8"=>"✓", "only_available"=>"1", "commit"=>"Refresh"}
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+Redirected to https://page-prime-3000.codio.io/games?only_available=1
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/games?only_available=1" for 160.39.227.228 at 2021-11-17 03:52:36 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"only_available"=>"1"}
+  [1m[35mPlayer Load (0.1ms)[0m  SELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mGame Load (0.1ms)[0m  [1mSELECT "games".* FROM "games" WHERE (slots_to_be_filled != slots_taken)[0m
+  Rendered games/index.html.haml within layouts/application (1.8ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/games?utf8=%E2%9C%93&commit=Refresh" for 160.39.227.228 at 2021-11-17 03:52:37 +0000
+Processing by GamesController#index as HTML
+  Parameters: {"utf8"=>"✓", "commit"=>"Refresh"}
+  [1m[35mPlayer Load (0.1ms)[0m  SELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1  [["id", 5]]
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:52:37 +0000
+Processing by GamesController#index as HTML
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (2.5ms)
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:53:09 +0000
+Processing by GamesController#index as HTML
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (3.5ms)
+Completed 200 OK in 12ms (Views: 10.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:54:33 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (7.7ms)
+Completed 200 OK in 189ms (Views: 188.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:54:38 +0000
+Processing by GamesController#index as HTML
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (9.6ms)
+Completed 200 OK in 29ms (Views: 14.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:54:44 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (0.4ms)
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:54:46 +0000
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:54:51 +0000
+Processing by GamesController#index as HTML
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (2.4ms)
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:55:05 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (0.4ms)
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:55:19 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (0.4ms)
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:55:42 +0000
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:55:49 +0000
+Processing by GamesController#index as HTML
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (2.3ms)
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:56:28 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (8.1ms)
+Completed 200 OK in 192ms (Views: 191.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:56:36 +0000
+Processing by GamesController#index as HTML
+Redirected to https://page-prime-3000.codio.io/login
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 160.39.227.228 at 2021-11-17 03:56:36 +0000
+Processing by SessionsController#new as HTML
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms)
+
+ActionView::MissingTemplate (Missing template sessions/new, application/new with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml]}. Searched in:
+  * "/home/codio/workspace/WeSports/WeSports/app/views"
+):
+  actionview (4.2.11) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.11) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.11) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.11) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.11) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.11) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.11) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/lib/ruby/2.6.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.11) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.11) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.11) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  omniauth (2.0.4) lib/omniauth/strategy.rb:202:in `call!'
+  omniauth (2.0.4) lib/omniauth/strategy.rb:169:in `call'
+  omniauth (2.0.4) lib/omniauth/builder.rb:45:in `call'
+  rack (1.6.13) lib/rack/etag.rb:24:in `call'
+  rack (1.6.13) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.13) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:252:in `context'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:247:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.11) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.11) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/lib/ruby/2.6.0/webrick/httpserver.rb:140:in `service'
+  /usr/lib/ruby/2.6.0/webrick/httpserver.rb:96:in `run'
+  /usr/lib/ruby/2.6.0/webrick/server.rb:307:in `block in start_thread'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (15.5ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:57:03 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (0.5ms)
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for 160.39.227.228 at 2021-11-17 03:57:05 +0000
+
+
+Started GET "/auth/google_oauth2/callback?state=a8f2e6e67fc51852cb3ae71f5e9c7aa756679fd4c05ef540&code=4%2F0AX4XfWjQfKmX8trmsWUDjsxMymJ5JTWx-fXPdZX7IZKIesChnpSNLysqw1mkjZCEfbJqRg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=1&prompt=none" for 160.39.227.228 at 2021-11-17 03:57:07 +0000
+Processing by SessionsController#omniauth as HTML
+  Parameters: {"state"=>"a8f2e6e67fc51852cb3ae71f5e9c7aa756679fd4c05ef540", "code"=>"4/0AX4XfWjQfKmX8trmsWUDjsxMymJ5JTWx-fXPdZX7IZKIesChnpSNLysqw1mkjZCEfbJqRg", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid", "authuser"=>"1", "prompt"=>"none", "provider"=>"google_oauth2"}
+  [1m[36mPlayer Load (0.2ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."uid" = ? AND "players"."provider" = ? LIMIT 1[0m  [["uid", "113426808349753538021"], ["provider", "google_oauth2"]]
+  [1m[35mPlayer Exists (0.1ms)[0m  SELECT  1 AS one FROM "players" WHERE ("players"."email" = 'stephbysteph16@gmail.com' AND "players"."id" != 5) LIMIT 1
+Redirected to https://page-prime-3000.codio.io/games
+Completed 302 Found in 23ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:57:08 +0000
+Processing by GamesController#index as HTML
+Redirected to https://page-prime-3000.codio.io/login
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 160.39.227.228 at 2021-11-17 03:57:08 +0000
+Processing by SessionsController#new as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+ActionView::MissingTemplate (Missing template sessions/new, application/new with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml]}. Searched in:
+  * "/home/codio/workspace/WeSports/WeSports/app/views"
+):
+  actionview (4.2.11) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.11) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.11) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.11) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.11) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.11) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.11) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/lib/ruby/2.6.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.11) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.11) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.11) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  omniauth (2.0.4) lib/omniauth/strategy.rb:202:in `call!'
+  omniauth (2.0.4) lib/omniauth/strategy.rb:169:in `call'
+  omniauth (2.0.4) lib/omniauth/builder.rb:45:in `call'
+  rack (1.6.13) lib/rack/etag.rb:24:in `call'
+  rack (1.6.13) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.13) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:252:in `context'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:247:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.11) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.11) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/lib/ruby/2.6.0/webrick/httpserver.rb:140:in `service'
+  /usr/lib/ruby/2.6.0/webrick/httpserver.rb:96:in `run'
+  /usr/lib/ruby/2.6.0/webrick/server.rb:307:in `block in start_thread'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (13.5ms)
+
+
+Started GET "/login" for 160.39.227.228 at 2021-11-17 03:57:18 +0000
+Processing by SessionsController#new as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+ActionView::MissingTemplate (Missing template sessions/new, application/new with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml]}. Searched in:
+  * "/home/codio/workspace/WeSports/WeSports/app/views"
+):
+  actionview (4.2.11) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.11) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.11) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.11) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.11) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.11) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.11) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/lib/ruby/2.6.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.11) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.11) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.11) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  omniauth (2.0.4) lib/omniauth/strategy.rb:202:in `call!'
+  omniauth (2.0.4) lib/omniauth/strategy.rb:169:in `call'
+  omniauth (2.0.4) lib/omniauth/builder.rb:45:in `call'
+  rack (1.6.13) lib/rack/etag.rb:24:in `call'
+  rack (1.6.13) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.13) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:252:in `context'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:247:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.11) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.11) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/lib/ruby/2.6.0/webrick/httpserver.rb:140:in `service'
+  /usr/lib/ruby/2.6.0/webrick/httpserver.rb:96:in `run'
+  /usr/lib/ruby/2.6.0/webrick/server.rb:307:in `block in start_thread'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (17.5ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:57:25 +0000
+Processing by GamesController#index as HTML
+Redirected to https://page-prime-3000.codio.io/login
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 160.39.227.228 at 2021-11-17 03:57:25 +0000
+Processing by SessionsController#new as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+ActionView::MissingTemplate (Missing template sessions/new, application/new with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml]}. Searched in:
+  * "/home/codio/workspace/WeSports/WeSports/app/views"
+):
+  actionview (4.2.11) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.11) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.11) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.11) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.11) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.11) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.11) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/lib/ruby/2.6.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.11) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.11) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.11) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  omniauth (2.0.4) lib/omniauth/strategy.rb:202:in `call!'
+  omniauth (2.0.4) lib/omniauth/strategy.rb:169:in `call'
+  omniauth (2.0.4) lib/omniauth/builder.rb:45:in `call'
+  rack (1.6.13) lib/rack/etag.rb:24:in `call'
+  rack (1.6.13) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.13) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:252:in `context'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:247:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.11) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.11) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/lib/ruby/2.6.0/webrick/httpserver.rb:140:in `service'
+  /usr/lib/ruby/2.6.0/webrick/httpserver.rb:96:in `run'
+  /usr/lib/ruby/2.6.0/webrick/server.rb:307:in `block in start_thread'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.0ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (18.1ms)
+
+
+Started GET "/" for 160.39.227.228 at 2021-11-17 03:58:07 +0000
+Processing by GamesController#login as HTML
+  Rendered games/login.html.haml within layouts/application (9.0ms)
+Completed 200 OK in 202ms (Views: 201.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:58:11 +0000
+Processing by GamesController#index as HTML
+  [1m[36mPlayer Load (0.1ms)[0m  [1mSELECT  "players".* FROM "players" WHERE "players"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games"
+  Rendered games/index.html.haml within layouts/application (10.1ms)
+Completed 200 OK in 29ms (Views: 14.5ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/games" for 160.39.227.228 at 2021-11-17 03:58:42 +0000
+Processing by GamesController#index as HTML
+Redirected to https://page-prime-3000.codio.io/login
+Completed 302 Found in 11ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 160.39.227.228 at 2021-11-17 03:58:42 +0000
+Processing by SessionsController#new as HTML
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.0ms)
+
+ActionView::MissingTemplate (Missing template sessions/new, application/new with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml]}. Searched in:
+  * "/home/codio/workspace/WeSports/WeSports/app/views"
+):
+  actionview (4.2.11) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.11) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.11) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.11) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.11) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.11) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.11) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/lib/ruby/2.6.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.11) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.11) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.11) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  omniauth (2.0.4) lib/omniauth/strategy.rb:202:in `call!'
+  omniauth (2.0.4) lib/omniauth/strategy.rb:169:in `call'
+  omniauth (2.0.4) lib/omniauth/builder.rb:45:in `call'
+  rack (1.6.13) lib/rack/etag.rb:24:in `call'
+  rack (1.6.13) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.13) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:252:in `context'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:247:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.11) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.11) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/lib/ruby/2.6.0/webrick/httpserver.rb:140:in `service'
+  /usr/lib/ruby/2.6.0/webrick/httpserver.rb:96:in `run'
+  /usr/lib/ruby/2.6.0/webrick/server.rb:307:in `block in start_thread'
+
+
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.9ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /var/lib/gems/2.6.0/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (21.7ms)
