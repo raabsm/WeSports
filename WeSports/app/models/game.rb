@@ -1,4 +1,17 @@
 class Game < ActiveRecord::Base
+    has_and_belongs_to_many :players, join_table: 'games_players'
+
+    def player_joined_game?(player_id)
+        return players.exists?(player_id)
+    end
+
+    def player_join_game(player_id)
+        player = Player.find(player_id)
+        players << player
+        join_game
+        return "Successfully Joined Game"
+    end
+
     def spots_left
         if slots_to_be_filled.nil?
             return 0

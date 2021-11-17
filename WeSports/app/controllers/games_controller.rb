@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   def show
     id = params[:id] # retrieve movie ID from URI route
     @game = Game.find(id) # look up movie by unique ID
+    @player_joined_game = @game.player_joined_game?(session[:user_id])
     # will render app/views/movies/show.<extension> by default
   end
 
@@ -73,9 +74,8 @@ class GamesController < ApplicationController
 
   def join
     @game = Game.find params[:id]
-    @game.join_game()
     player_id = session[:user_id]
-    valid, notice = PlayerGame.add_pair(params[:id], player_id)
+    notice = @game.player_join_game(player_id)
     flash[:notice] = notice
     redirect_to game_path(@game)
   end

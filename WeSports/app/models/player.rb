@@ -1,6 +1,7 @@
 class Player < ActiveRecord::Base
   validates :username, :email, presence: true
   validates :email, uniqueness: true
+  has_and_belongs_to_many :games, join_table: 'games_players'
   
   def self.create_from_omniauth(auth)
         Player.find_or_create_by(uid: auth['uid'], provider: auth['provider']) do |u|
