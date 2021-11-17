@@ -26,3 +26,12 @@ players = [{:name => 'Sam', :email => 'smr2218@columbia.edu'},
 players.each do |player|
   Player.create!(player)
 end
+
+player_game = [{:player_id => 1, :game_id => 2},
+							 {:player_id => 1, :game_id => 4},
+							 {:player_id => 3, :game_id => 1},
+]
+
+player_game.each do |pair|
+	PlayerGame.create!(pair)
+end
