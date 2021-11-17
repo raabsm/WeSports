@@ -34,15 +34,22 @@ RSpec.describe GamesController, type: :controller do
                   :slots_to_be_filled => 10,
                   :slots_taken => 10)
     end
+    if Player.where(:uid => "1").empty?
+      @test_player = Player.create(:email => "Test@gmail.com",
+                  :uid => "1",
+                  :username => 'Test',
+                  :provider => 'google_oauth2')
+    end
   end
 
   after(:all) do
     Game.delete_all
+    Player.delete_all
   end
 
   describe "When trying to filter by name with a valid sport name" do
     it "returns a valid list of games filtered by that sport name" do
-      get  :index,{:name_search => "Basketball"}, {:name_search => "Basketball"}
+      get  :index,{:name_search => "Basketball"}, {:name_search => "Basketball", :user_id => @test_player.id}
 
       expect(assigns(:games).length).not_to eq(0)
 
@@ -58,7 +65,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by name with an empty sport name" do
     it "returns the list of all games" do
-      get  :index, {:name_search => ""}, {:name_search => ""}
+      get  :index, {:name_search => ""}, {:name_search => "", :user_id => @test_player.uid}
 
       expect(assigns(:games).length).to eq(5)
 
@@ -74,7 +81,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by name with an invalid sport name" do
     it "returns an empty list of games" do
-      get  :index, {:name_search => "invalid"}, {:name_search => "invalid"}
+      get  :index, {:name_search => "invalid"}, {:name_search => "invalid", :user_id => @test_player.uid}
 
       expect(assigns(:games).length).to eq(0)
     end
@@ -82,7 +89,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When the only available button is not checked" do
     it "Shows the entire list of games" do
-      get  :index, {:only_available => "0"}, {:only_available => "0"}
+      get  :index, {:only_available => "0"}, {:only_available => "0", :user_id => @test_player.uid}
 
       expect(assigns(:games).length).to eq(5)
 
@@ -97,7 +104,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When the only available button is checked" do
     it "Shows the entire list of games" do
-      get  :index, {:only_available => "1"}, {:only_available => "1"}
+      get  :index, {:only_available => "1"}, {:only_available => "1", :user_id => @test_player.uid}
 
       expect(assigns(:games).length).to eq(4)
 
@@ -110,7 +117,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by zipcode" do
     it "returns a valid list of games filtered by that zipcode" do
-      get :index, {:zip_search => "10010"}, {:zip_search => "10010"}
+      get :index, {:zip_search => "10010"}, {:zip_search => "10010", :user_id => @test_player.uid}
       expect(assigns(:games).length).to eq(1)
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"soccer"))
     end
@@ -118,7 +125,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by blank zipcode" do
     it "returns a valid list of games filtered by that zipcode" do
-      get :index, {:zip_search => ""}, {:zip_search => ""}
+      get :index, {:zip_search => ""}, {:zip_search => "", :user_id => @test_player.uid}
       expect(assigns(:games).length).to eq(5)
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"Basketball"))
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"basketball"))
@@ -130,7 +137,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by invalid zipcode" do
     it "returns a valid list of games filtered by that zipcode" do
-      get  :index, {:zip_search => "abc"}, {:zip_search => "abc"}
+      get  :index, {:zip_search => "abc"}, {:zip_search => "abc", :user_id => @test_player.uid}
       expect(assigns(:games).length).to eq(0)
       expect(assigns(:games)).not_to include(Game.find_by(:sport_name=>"soccer"))
     end
@@ -138,7 +145,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by zip code and sport name" do
     it "returns a list of games with sport name equal to the sport name search and with same zip code" do
-      get  :index, {:name_search => "Basketball", :zip_search => "10025"}, {:name_search => "Basketball", :zip_search => "10025"}
+      get  :index, {:name_search => "Basketball", :zip_search => "10025"}, {:name_search => "Basketball", :zip_search => "10025", :user_id => @test_player.uid}
       expect(assigns(:games).length).to eq(1)
 
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"basketball"))
@@ -150,7 +157,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by sport name, zipcode and only available" do
     it "returns a valid list of games filtered by that zipcode" do
-      get  :index, {:zip_search => "10024", :only_available => "0", :name_search=>"Basketball"}, {:zip_search => "10024", :only_available => "0", :name_search=>"Basketball"}
+      get  :index, {:zip_search => "10024", :only_available => "0", :name_search=>"Basketball"}, {:zip_search => "10024", :only_available => "0", :name_search=>"Basketball", :user_id => @test_player.uid}
       expect(assigns(:games).length).to eq(1)
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"Basketball"))
     end

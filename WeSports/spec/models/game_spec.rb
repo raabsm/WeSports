@@ -38,6 +38,7 @@ RSpec.describe Game, type: :model do
 
   after(:all) do
     Game.delete_all
+    Player.delete_all
   end
 
   describe "join_game method" do
