@@ -11,6 +11,11 @@ Background: games have been added to database
     | Football    | 10030   | 22                 | 18          | 03-Nov-2021 16:00:00  |               |
     | soccer      | 10010   | 10                 | 7           | 03-Nov-2021 12:00:00  |               |
 
+  Given the following players exist:
+    | username | email             | uid                   | provider      |
+    | Jenny    | jxm033f@gmail.com | 118294165813028623643 | google_oauth2 |
+
+  Given I am logged in as "118294165813028623643"
   And  I am on the WeSports home page
   Then 5 seed games should exist
 
