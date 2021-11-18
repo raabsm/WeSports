@@ -1,8 +1,24 @@
 class Game < ActiveRecord::Base
+    has_and_belongs_to_many :players, join_table: 'games_players'
+
+    def player_joined_game?(player_id)
+        return players.exists?(player_id)
+    end
+
+    def slots_taken
+        return players.length
+    end
+
+    def player_join_game(player_id)
+        player = Player.find(player_id)
+        players << player
+        return "Successfully Joined Game"
+    end
+
     def spots_left
         if slots_to_be_filled.nil?
             return 0
-        elsif slots_taken.nil?
+        elsif slots_taken == 0
             return slots_to_be_filled
         else
             return slots_to_be_filled - slots_taken
@@ -24,14 +40,9 @@ class Game < ActiveRecord::Base
         return valid, notice
     end
 
-    def join_game
-        update_attributes!({:slots_taken => slots_taken + 1})
-    end
-
     def self.add_game(game_params)
         valid, notice = Game.check_valid_game(game_params)
         if valid
-            game_params[:slots_taken] = 0
             create!(game_params)
             notice = "Successfully created #{game_params[:sport_name]} game"
         end
@@ -51,4 +62,16 @@ class Game < ActiveRecord::Base
         end
         return valid, notice
     end
+
+    def self.check_game_exist(game_id)
+        if exists?(id: game_id)
+            notice = ""
+            valid = true
+        else
+            notice = "Error: Game does not exist"
+            valid = false
+        end
+        return valid, notice
+    end
+
 end
