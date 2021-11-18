@@ -48,14 +48,14 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by name with a valid sport name" do
     it "returns a valid list of games filtered by that sport name" do
-      get  :index,{:name_search => "Basketball"}, {:name_search => "Spikeball", :user_id => @signed_in_player.id}
+      get  :index,{:name_search => "Basketball"}, {:name_search => "Basketball", :user_id => @signed_in_player.id}
 
       expect(assigns(:games).length).not_to eq(0)
 
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"Basketball"))
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"basketball"))
 
-      expect(assigns(:games)).not_to include(Game.find_by(:sport_name=>"Spikeball"))
+      expect(assigns(:games)).not_to include(Game.find_by(:sport_name=>"soccer"))
       expect(assigns(:games)).not_to include(Game.find_by(:sport_name=>"Football"))
 
     end
@@ -91,7 +91,7 @@ RSpec.describe GamesController, type: :controller do
       game = Game.where(:sport_name => "Spikeball").first
       game.players << [Player.second, Player.third]
 
-      get  :index, {:only_available => "0"}, {:only_available => "0", :user_id => @signed_in_player.id}
+      get  :index, {:only_available => "0"}, {:only_available => "1", :user_id => @signed_in_player.id}
 
       expect(assigns(:games).length).to eq(5)
 
@@ -241,7 +241,7 @@ RSpec.describe GamesController, type: :controller do
   describe "Delete a game" do
     it "deletes the game" do
       @game = Game.where(:sport_name => "soccer").first
-      get :delete, {:id => @game.id}, {}
+      get :destroy, {:id => @game.id}, {}
       expect(Game.where(:sport_name => "soccer").length).to eq(0)
     end
   end

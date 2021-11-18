@@ -9,6 +9,7 @@ class GamesController < ApplicationController
   end
 
   def index
+    puts session[:name_search]
     @player = Player.find(session[:user_id])
     @games_player_joined = @player.games
     @games = Game.where.not(id: @games_player_joined.ids)

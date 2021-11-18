@@ -8,6 +8,10 @@ Given /the following games exist/ do |games_table|
   end
 end
 
+When /I add player with email "(.*)" to game "(.*)"/ do |email, name|
+  Game.where(:sport_name => name).first.players << Player.where(:email => email).first
+end
+
 Then /(.*) seed games should exist/ do | n_seeds |
   Game.count.should be n_seeds.to_i
 end
