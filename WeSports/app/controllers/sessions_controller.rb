@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     def create
         u = Player.find_by_email(params[:email])
-        if u && u.authenticate(params[:password])
+        if u
             session[:user_id] = u.id
             redirect_to user_path(u)
         else
