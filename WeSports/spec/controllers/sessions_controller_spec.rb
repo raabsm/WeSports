@@ -1,6 +1,7 @@
 require 'rails_helper'
+require 'simplecov'
 
-RSpec.describe Player, type: :model do
+RSpec.describe SessionsController, type: :controller do
   before(:all) do
     Game.delete_all
     if Game.where(:sport_name => "Spikeball").empty?
@@ -46,12 +47,43 @@ RSpec.describe Player, type: :model do
     Game.delete_all
   end
 
-
-  describe "When creating from Omniauth with valid" do
-    it "should redirect to games_path" do
-      auth = {"uid" => "5", "provider"=>"google_oauth2", "info" => {"first_name"=> "fake","email"=> "fake@gmail.com"} }
-      user = Player.create_from_omniauth(auth)
-      expect(Player.find_by(uid: "5").username).to eq(auth["info"]["first_name"])
+  describe "When creating with valid credentials" do
+    it "should correctly login " do
+      get  :create, {:email => @test_player.email}
+      expect(response).to redirect_to user_path(@test_player)
     end
   end
+
+
+  describe "When creating with invalid credentials" do
+    it "should redirect to login and flash message " do
+      get  :create
+      expect(response).to redirect_to '/login'
+      expect(flash[:message]).to match("Invalid credentials. Please try again.")
+    end
+  end
+
+  describe "When destroying the session" do
+    it "should redirect to login " do
+      get  :destroy ,{:user_id => @test_player.id}
+      expect(response).to redirect_to '/login'
+    end
+  end
+
+  #describe "When creating from Omniauth with valid" do
+  #it "should redirect to games_path" do
+  #auth = {"uid" => "1", "provider"=>"google_oauth2", "info" => {"first_name"=> "fake","email"=> "fakemail@you.com"} }
+  #user = Player.create_from_omniauth(auth)
+  #get  '/auth/:provider/callback'
+  #expect(response).to redirect_to games_path
+  #end
+  #end
+
+  #describe "When creating from Omniauth with valid" do
+  #it "should flash message" do
+  #get  :omniauth
+  #end
+  #end
+
 end
+
