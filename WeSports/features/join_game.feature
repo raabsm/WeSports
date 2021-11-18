@@ -34,3 +34,14 @@ Feature: join a pickup sports game
     And I should see "Slots Left Available: 3"
     And I should see "Name: Jenny | Email: jxm033f@gmail.com"
     And I should not see "Join Game"
+
+  Scenario: Game is added to games joined
+
+    When I press "Join Game"
+    Then I should be on the details page for "Spikeball"
+    And I should see "Successfully Joined Game"
+    And I should see "Slots Left Available: 3"
+    And I should see "Name: Jenny | Email: jxm033f@gmail.com"
+    When I press "Back to Games list"
+    Then I should be on the WeSports home page
+    Then I should see "Games You Joined:" before "Spikeball"/
