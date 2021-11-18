@@ -57,4 +57,11 @@ RSpec.describe Game, type: :model do
     end
   end
 
+  describe "check_game_exists" do
+    it "checks if the game exists" do
+      game = Game.find_by(:sport_name => "soccer")
+      expect(Game.check_game_exist(game.id)[0]).to eq(true)
+    end
+  end
+
 end

@@ -48,7 +48,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by name with a valid sport name" do
     it "returns a valid list of games filtered by that sport name" do
-      get  :index,{:name_search => "Basketball"}, {:name_search => "Basketball", :user_id => @signed_in_player.id}
+      get  :index,{:name_search => "Basketball"}, {:name_search => "Spikeball", :user_id => @signed_in_player.id}
 
       expect(assigns(:games).length).not_to eq(0)
 
@@ -237,5 +237,50 @@ RSpec.describe GamesController, type: :controller do
       expect(Game.find_by(:sport_name => "Spikeball").slots_taken).to eq(2)
     end
   end
+
+  describe "Delete a game" do
+    it "deletes the game" do
+      @game = Game.where(:sport_name => "soccer").first
+      get :delete, {:id => @game.id}, {}
+      expect(Game.where(:sport_name => "soccer").length).to eq(0)
+    end
+  end
+
+  describe "Join a Game" do
+    before(:all) do
+      @game = Game.where(:sport_name => "soccer").first
+    end
+
+    it "adds the player to the game" do
+      expect(@game.slots_taken).to eq(0)
+      get :join, {:id => @game.id}, {:user_id => @signed_in_player.id}
+      expect(Game.where(:sport_name => "soccer").first.slots_taken).to eq(1)
+      expect(Game.where(:sport_name => "soccer").first.spots_left).to eq(9)
+      expect(flash[:notice]).to eq("Successfully Joined Game")
+    end
+
+    it "displays on the details page" do
+      get :join, {:id => @game.id}, {:user_id => @signed_in_player.id}
+
+      get :show, {:id => @game.id}, {:user_id => @signed_in_player.id}
+      expect(assigns(:players)).to include(@signed_in_player)
+    end
+
+    it "displays on the home page" do
+      get :join, {:id => @game.id}, {:user_id => @signed_in_player.id}
+
+      get :index, {}, {:user_id => @signed_in_player.id}
+      expect(assigns(:games_player_joined)).to include(@game)
+    end
+
+    it "we already joined does nothing" do
+      get :join, {:id => @game.id}, {:user_id => @signed_in_player.id}
+      spots_left = Game.where(:sport_name => "soccer").first.spots_left
+      get :join, {:id => @game.id}, {:user_id => @signed_in_player.id}
+      expect(flash[:notice]).to eq("Already joined game")
+      expect(Game.where(:sport_name => "soccer").first.spots_left).to eq(spots_left)
+    end
+  end
+
 
 end

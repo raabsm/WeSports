@@ -10,9 +10,13 @@ class Game < ActiveRecord::Base
     end
 
     def player_join_game(player_id)
-        player = Player.find(player_id)
-        players << player
-        return "Successfully Joined Game"
+        if not player_joined_game?(player_id)
+            player = Player.find(player_id)
+            players << player
+            return "Successfully Joined Game"
+        else
+            return "Already joined game"
+        end
     end
 
     def spots_left
