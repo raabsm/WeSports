@@ -11,6 +11,11 @@ Feature: edit a pickup sports game
       | Spikeball   | 10027   | 4                  | 2           | 31-Oct-2021 12:00:00  | 31-Oct-2021 15:00:00 |
       | Basketball  | 10024   | 10                 | 0           | 1-Nov-2021 15:00:00  | 31-Oct-2021 15:30:00  |
 
+    Given the following players exist:
+      | username | email             | uid                   | provider      |
+      | Jenny    | jxm033f@gmail.com | 118294165813028623643 | google_oauth2 |
+
+    Given I am logged in as "118294165813028623643"
     And I am on the details page for "Spikeball"
 
   Scenario: I navigate to the edit game page
@@ -27,7 +32,7 @@ Feature: edit a pickup sports game
     And I press "Update Game Info"
     Then I should see "Random Test Sport"
     And I should see "10027"
-    And I should see "4"
+    And I should see "6"
     And I should see "Successfully updated game"
 
   Scenario: I attempt to edit a game with no name or zip code

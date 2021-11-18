@@ -6,6 +6,7 @@ Wesports::Application.routes.draw do
   # get '/auth/google_oath2/callback', to: 'sessions#omniauth'
   get '/auth/:provider/callback', to: 'sessions#omniauth'
   get '/login', to: 'sessions#new'
+  get '/quick_login/:id', to: 'sessions#quick_login', as: :quick_login
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 

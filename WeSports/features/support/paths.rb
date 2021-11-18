@@ -14,6 +14,8 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
+    when /^the login page for user "(.*)"$/ then
+      quick_login_path(Player.find_by(id: $1))
     when /^the (WeSports )?home\s?page$/ then '/games'
     when /^the new game page$/ then '/games/new'
     when /^the games page$/ then '/games'
