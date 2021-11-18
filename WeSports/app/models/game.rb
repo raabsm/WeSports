@@ -43,7 +43,6 @@ class Game < ActiveRecord::Base
     def self.add_game(game_params)
         valid, notice = Game.check_valid_game(game_params)
         if valid
-            game_params[:slots_taken] = 0
             create!(game_params)
             notice = "Successfully created #{game_params[:sport_name]} game"
         end

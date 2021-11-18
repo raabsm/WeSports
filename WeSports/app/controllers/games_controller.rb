@@ -4,11 +4,13 @@ class GamesController < ApplicationController
     id = params[:id] # retrieve movie ID from URI route
     @game = Game.find(id) # look up movie by unique ID
     @player_joined_game = @game.player_joined_game?(session[:user_id])
+    @players = @game.players
     # will render app/views/movies/show.<extension> by default
   end
 
   def index
     @player = Player.find(session[:user_id])
+    @games_player_joined = @player.games
     if @player.nil?
       redirect_to '/login'
     end
@@ -52,6 +54,7 @@ class GamesController < ApplicationController
         @games = Game.all.where("lower(sport_name) LIKE :name_search AND zipcode LIKE :zip_search", name_search: "%#{@sport}%", zip_search: "%#{@zip}%")
       end
     end
+    @games = @games.where.not(id: @games_player_joined.ids)
   end
 
   def new
@@ -100,6 +103,6 @@ class GamesController < ApplicationController
 
   private
   def game_params
-    params.require(:game).permit(:sport_name, :zipcode, :slots_to_be_filled, :slots_taken, :game_start_time, :game_end_time)
+    params.require(:game).permit(:sport_name, :zipcode, :slots_to_be_filled, :game_start_time, :game_end_time)
   end
 end
