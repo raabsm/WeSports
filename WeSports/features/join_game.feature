@@ -24,6 +24,7 @@ Feature: join a pickup sports game
     Then I should be on the details page for "Spikeball"
     And I should see "Successfully Joined Game"
     And I should see "Slots Left Available: 3"
+    And I should see "Name: Jenny | Email: jxm033f@gmail.com"
 
   Scenario: Button disappears if all slots taken
 
@@ -31,4 +32,5 @@ Feature: join a pickup sports game
     Then I should be on the details page for "Spikeball"
     And I should see "Successfully Joined Game"
     And I should see "Slots Left Available: 3"
+    And I should see "Name: Jenny | Email: jxm033f@gmail.com"
     And I should not see "Join Game"
