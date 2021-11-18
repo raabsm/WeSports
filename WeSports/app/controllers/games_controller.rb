@@ -11,6 +11,8 @@ class GamesController < ApplicationController
   def index
     @player = Player.find(session[:user_id])
     @games_player_joined = @player.games
+    @games = Game.where.not(id: @games_player_joined.ids)
+
     if @player.nil?
       redirect_to '/login'
     end
@@ -27,34 +29,33 @@ class GamesController < ApplicationController
 
     if params[:only_available] == "1"
       if params[:name_search].blank? and params[:zip_search].blank?
-        @games = Game.all().where("slots_to_be_filled != slots_taken")
+        @games = @games.select {|game| game.spots_left > 0}
       elsif !params[:name_search].blank? and params[:zip_search].blank?
         @sport = params[:name_search].downcase
-        @games = Game.all.where("lower(sport_name) LIKE :name_search AND slots_to_be_filled != slots_taken", name_search: "%#{@sport}%")
+        @games = @games.where("lower(sport_name) LIKE :name_search", name_search: "%#{@sport}%").select {|game| game.spots_left > 0}
       elsif params[:name_search].blank? and !params[:zip_search].blank?
         @zip = params[:zip_search].downcase
-        @games = Game.all.where("zipcode LIKE :zip_search AND slots_to_be_filled != slots_taken", zip_search: "%#{@zip}%")
+        @games = @games.where("zipcode LIKE :zip_search", zip_search: "%#{@zip}%").select {|game| game.spots_left > 0}
       else
         @sport = params[:name_search].downcase
         @zip = params[:zip_search].downcase
-        @games = Game.all.where("lower(sport_name) LIKE :name_search AND zipcode LIKE :zip_search AND slots_to_be_filled != slots_taken", name_search: "%#{@sport}%", zip_search: "%#{@zip}%")
+        @games = @games.where("lower(sport_name) LIKE :name_search AND zipcode LIKE :zip_search", name_search: "%#{@sport}%", zip_search: "%#{@zip}%").select {|game| game.spots_left > 0}
       end
     else
       if params[:name_search].blank? and params[:zip_search].blank?
-        @games = Game.all()
+        @games = @games
       elsif !params[:name_search].blank? and params[:zip_search].blank?
         @sport = params[:name_search].downcase
-        @games = Game.all.where("lower(sport_name) LIKE :name_search", name_search: "%#{@sport}%")
+        @games = @games.where("lower(sport_name) LIKE :name_search", name_search: "%#{@sport}%")
       elsif params[:name_search].blank? and !params[:zip_search].blank?
         @zip = params[:zip_search].downcase
-        @games = Game.all.where("zipcode LIKE :zip_search", zip_search: "%#{@zip}%")
+        @games = @games.where("zipcode LIKE :zip_search", zip_search: "%#{@zip}%")
       else
         @sport = params[:name_search].downcase
         @zip = params[:zip_search].downcase
-        @games = Game.all.where("lower(sport_name) LIKE :name_search AND zipcode LIKE :zip_search", name_search: "%#{@sport}%", zip_search: "%#{@zip}%")
+        @games = @games.where("lower(sport_name) LIKE :name_search AND zipcode LIKE :zip_search", name_search: "%#{@sport}%", zip_search: "%#{@zip}%")
       end
     end
-    @games = @games.where.not(id: @games_player_joined.ids)
   end
 
   def new

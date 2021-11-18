@@ -7,33 +7,38 @@ RSpec.describe GamesController, type: :controller do
     if Game.where(:sport_name => "Spikeball").empty?
       Game.create(:sport_name => "Spikeball",
                   :zipcode => "10027",
-                  :slots_to_be_filled => 4,
-                  :slots_taken => 2)
+                  :slots_to_be_filled => 2)
     end
     if Game.where(:sport_name => "Basketball").empty?
       Game.create(:sport_name => "Basketball",
                   :zipcode => "10024",
-                  :slots_to_be_filled => 10,
-                  :slots_taken => 0)
+                  :slots_to_be_filled => 10)
     end
     if Game.where(:sport_name => "basketball").empty?
       Game.create(:sport_name => "basketball",
                   :zipcode => "10025",
-                  :slots_to_be_filled => 10,
-                  :slots_taken => 3)
+                  :slots_to_be_filled => 10)
     end
     if Game.where(:sport_name => "Football").empty?
       Game.create(:sport_name => "Football",
                   :zipcode => "10030",
-                  :slots_to_be_filled => 22,
-                  :slots_taken => 18)
+                  :slots_to_be_filled => 22)
     end
     if Game.where(:sport_name => "soccer").empty?
       Game.create(:sport_name => "soccer",
                   :zipcode => "10010",
-                  :slots_to_be_filled => 10,
-                  :slots_taken => 10)
+                  :slots_to_be_filled => 10)
     end
+    Player.delete_all
+    players = [{:username => 'Joe Shmoe', :email => 'joeshmo@gmail.com'},
+               {:username => 'Random Person', :email => 'rando@columbia.edu'},
+               {:username => 'Another Rando', :email => 'rando2@columbia.edu'}
+    ]
+
+    players.each do |player|
+      p = Player.create!(player)
+    end
+
   end
 
   after(:all) do
@@ -42,7 +47,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by name with a valid sport name" do
     it "returns a valid list of games filtered by that sport name" do
-      get  :index,{:name_search => "Basketball"}, {:name_search => "Basketball"}
+      get  :index,{:name_search => "Basketball"}, {:name_search => "Basketball", :user_id => Player.where(:username => 'Joe Shmoe').first.id}
 
       expect(assigns(:games).length).not_to eq(0)
 
@@ -58,7 +63,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by name with an empty sport name" do
     it "returns the list of all games" do
-      get  :index, {:name_search => ""}, {:name_search => ""}
+      get  :index, {:name_search => ""}, {:name_search => "", :user_id => Player.where(:username => 'Joe Shmoe').first.id}
 
       expect(assigns(:games).length).to eq(5)
 
@@ -74,7 +79,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by name with an invalid sport name" do
     it "returns an empty list of games" do
-      get  :index, {:name_search => "invalid"}, {:name_search => "invalid"}
+      get  :index, {:name_search => "invalid"}, {:name_search => "invalid", :user_id => Player.where(:username => 'Joe Shmoe').first.id}
 
       expect(assigns(:games).length).to eq(0)
     end
@@ -82,7 +87,10 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When the only available button is not checked" do
     it "Shows the entire list of games" do
-      get  :index, {:only_available => "0"}, {:only_available => "0"}
+      game = Game.where(:sport_name => "Spikeball").first
+      game.players << [Player.second, Player.third]
+
+      get  :index, {:only_available => "0"}, {:only_available => "0", :user_id => Player.where(:username => 'Joe Shmoe').first.id}
 
       expect(assigns(:games).length).to eq(5)
 
@@ -97,11 +105,14 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When the only available button is checked" do
     it "Shows the entire list of games" do
-      get  :index, {:only_available => "1"}, {:only_available => "1"}
+      game = Game.where(:sport_name => "Spikeball").first
+      game.players << [Player.second, Player.third]
+
+      get  :index, {:only_available => "1"}, {:only_available => "1", :user_id => Player.where(:username => 'Joe Shmoe').first.id}
 
       expect(assigns(:games).length).to eq(4)
 
-      expect(assigns(:games)).not_to include(Game.find_by(:sport_name=>"soccer"))
+      expect(assigns(:games)).not_to include(Game.find_by(:sport_name=>"Spikeball"))
 
     end
   end
@@ -110,7 +121,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by zipcode" do
     it "returns a valid list of games filtered by that zipcode" do
-      get :index, {:zip_search => "10010"}, {:zip_search => "10010"}
+      get :index, {:zip_search => "10010"}, {:zip_search => "10010", :user_id => Player.where(:username => 'Joe Shmoe').first.id}
       expect(assigns(:games).length).to eq(1)
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"soccer"))
     end
@@ -118,7 +129,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by blank zipcode" do
     it "returns a valid list of games filtered by that zipcode" do
-      get :index, {:zip_search => ""}, {:zip_search => ""}
+      get :index, {:zip_search => ""}, {:zip_search => "", :user_id => Player.where(:username => 'Joe Shmoe').first.id}
       expect(assigns(:games).length).to eq(5)
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"Basketball"))
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"basketball"))
@@ -130,7 +141,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by invalid zipcode" do
     it "returns a valid list of games filtered by that zipcode" do
-      get  :index, {:zip_search => "abc"}, {:zip_search => "abc"}
+      get  :index, {:zip_search => "abc"}, {:zip_search => "abc", :user_id => Player.where(:username => 'Joe Shmoe').first.id}
       expect(assigns(:games).length).to eq(0)
       expect(assigns(:games)).not_to include(Game.find_by(:sport_name=>"soccer"))
     end
@@ -138,7 +149,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by zip code and sport name" do
     it "returns a list of games with sport name equal to the sport name search and with same zip code" do
-      get  :index, {:name_search => "Basketball", :zip_search => "10025"}, {:name_search => "Basketball", :zip_search => "10025"}
+      get  :index, {:name_search => "Basketball", :zip_search => "10025"}, {:name_search => "Basketball", :zip_search => "10025", :user_id => Player.where(:username => 'Joe Shmoe').first.id}
       expect(assigns(:games).length).to eq(1)
 
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"basketball"))
@@ -150,7 +161,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to filter by sport name, zipcode and only available" do
     it "returns a valid list of games filtered by that zipcode" do
-      get  :index, {:zip_search => "10024", :only_available => "0", :name_search=>"Basketball"}, {:zip_search => "10024", :only_available => "0", :name_search=>"Basketball"}
+      get  :index, {:zip_search => "10024", :only_available => "0", :name_search=>"Basketball"}, {:zip_search => "10024", :only_available => "0", :name_search=>"Basketball", :user_id => Player.where(:username => 'Joe Shmoe').first.id}
       expect(assigns(:games).length).to eq(1)
       expect(assigns(:games)).to include(Game.find_by(:sport_name=>"Basketball"))
     end
@@ -161,8 +172,7 @@ RSpec.describe GamesController, type: :controller do
       previous_len = Game.all().count
       get :create, {:game => {:sport_name => "Wiffle Ball",
                                         :zipcode => "10027",
-                                        :slots_to_be_filled => 20,
-                                        :slots_taken => 10}}
+                                        :slots_to_be_filled => 20}}
       expect(response).to redirect_to games_path
       expect(flash[:notice]).to match(/Successfully created Wiffle Ball game/)
       expect(Game.all().count).to eq(previous_len + 1)
@@ -172,8 +182,7 @@ RSpec.describe GamesController, type: :controller do
     it "Game with no name or zipcode parameters" do
       get :create, {:game => {:sport_name => "",
                                         :zipcode => "10027",
-                                        :slots_to_be_filled => 20
-                                        }}
+                                        :slots_to_be_filled => 20}}
       expect(response).to redirect_to new_game_path
       expect(flash[:notice]).to match(/Error: Missing Zip Code or Sport Name Fields/)
     end
@@ -192,12 +201,11 @@ RSpec.describe GamesController, type: :controller do
     it "Successfully edits the name" do
       game = Game.create!(:sport_name => "Football",
                          :zipcode => "10026",
-                         :slots_to_be_filled => 20,
-                         :slots_taken => 5)
+                         :slots_to_be_filled => 20)
 
       get :update, {:id => game.id, :game =>
         {:sport_name => "New Sport", :zipcode => "10026",
-         :slots_to_be_filled => 20, :slots_taken => 5} }
+         :slots_to_be_filled => 20} }
 
       expect(response).to redirect_to game_path(game)
       expect(flash[:notice]).to match(/Successfully updated game/)
@@ -206,8 +214,7 @@ RSpec.describe GamesController, type: :controller do
     it "Doesn't include zipcode or name" do
       game = Game.create(:sport_name => "New Sport",
                          :zipcode => "10026",
-                         :slots_to_be_filled => 20,
-                         :slots_taken => 5)
+                         :slots_to_be_filled => 20)
       get :update, {:id => game.id, :game =>
         {:sport_name => "", :zipcode => "10026",
          :slots_to_be_filled => 20} }
@@ -217,17 +224,16 @@ RSpec.describe GamesController, type: :controller do
     end
 
     it "Fewer Total Slots than slots taken" do
-      game = Game.create(:sport_name => "New Sport",
-                         :zipcode => "10026",
-                         :slots_to_be_filled => 20,
-                         :slots_taken => 5)
+      game = Game.where(:sport_name => "Spikeball").first
+      game.players << [Player.second, Player.third]
+
       put :update, {:id => game.id, :game =>
-        {:slots_to_be_filled => 4, :zipcode => "10026",
+        {:slots_to_be_filled => 1, :zipcode => "10026",
          :sport_name => "New Sport"} }
 
       expect(response).to redirect_to edit_game_path(game)
-      expect(flash[:notice]).to match("Error: More Slots Taken (5) than Available")
-      expect(Game.find_by(:sport_name => "New Sport").slots_taken).to eq(5)
+      expect(flash[:notice]).to match("Error: More Slots Taken (2) than Available")
+      expect(Game.find_by(:sport_name => "Spikeball").slots_taken).to eq(2)
     end
   end
 
