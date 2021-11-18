@@ -1,7 +1,19 @@
 source 'https://rubygems.org'
 
-ruby '2.6.3'
+ruby '>=2.6.3'
 gem 'rails', '4.2.11'
+
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
+gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
+
+gem 'bcrypt', '~> 3.1.7'
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-google-oauth2'
 
 # for Heroku deployment - as described in Ap. A of ELLS book
 group :development, :test do

@@ -1,0 +1,2 @@
+#ignore the env file so we don't have the keys on the github
+.env
