@@ -8,6 +8,6 @@ end
 
 Given /^I am logged in as "(.*)"$/ do |uid|
   @current_user = Player.find_by(uid: uid)
-  quick_login(@current_user.id) #this does not work
+  steps %Q{When I am on the login page for user "#{@current_user.id}"}
 end
 
