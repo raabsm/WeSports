@@ -14,20 +14,19 @@ Run program locally
 2. rake db:migrate
 3. rake db:seed
 4. rails server
---> This should automatically run on http://0.0.0.0:3000
+5. In order for WeSports to function run on http://localhost:3000/
 
-To run tests on MacOS
-1. rake db:migrate RAILS_ENV=test
-2. bundle exec cucumber features/search_sport.feature 
+Heroku: https://wesports-app.herokuapp.com/
 
-https://enigmatic-bastion-69608.herokuapp.com/ 
-
-https://github.com/raabsm/WeSports
+Github: https://github.com/raabsm/WeSports
 
 Features
 Pages
+	Login
+		Sign in botton (redirects to google oauth)
 	Index 
-		Table with games
+		Table with games available
+		Table with games that user joined
 		More info buttons on every game (redirect to game description)
 		Filter for available only games
 		Filter section (search bar for name and zip code)
