@@ -6,6 +6,11 @@ Feature: create a new pickup sports game
 
 Background:
 
+  Given the following players exist:
+  | username | email             | uid                   | provider      |
+  | Jenny    | jxm033f@gmail.com | 118294165813028623643 | google_oauth2 |
+
+  Given I am logged in as "118294165813028623643"
   Given I am on the WeSports home page
 
 Scenario: I navigate to the add new game page

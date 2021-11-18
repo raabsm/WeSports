@@ -38,4 +38,15 @@ class SessionsController < ApplicationController
         request.env['omniauth.auth']
     end
 
+    def quick_login
+        raise "quick login only works in cucumber environment! it's meant for acceptance tests only" unless Rails.env.test?
+        u = Player.find params[:id]
+        if u
+            session[:user_id] = u.id
+            render :text => "assumed identity of #{u.username}"
+        else
+            raise "failed to assume identity"
+        end
+    end
+
 end
