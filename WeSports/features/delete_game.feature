@@ -6,9 +6,9 @@ Feature: delete game from games list
 Background: games have been added to database
 
   Given the following games exist:
-    | sport_name  | zipcode | slots_to_be_filled | slots_taken | game_start_time       | game_end_time |
-    | Spikeball   | 10027   | 4                  | 2           | 31-Oct-2021 15:03:00  |               |
-    | Basketball  | 10024   | 10                 | 0           | 31-Oct-2021 15:03:00  |               |
+    | sport_name  | zipcode | slots_to_be_filled | game_start_time       | game_end_time |
+    | Spikeball   | 10027   | 4                  | 31-Oct-2021 15:03:00  |               |
+    | Basketball  | 10024   | 10                 | 31-Oct-2021 15:03:00  |               |
 
   Given the following players exist:
     | username | email             | uid                   | provider      |
