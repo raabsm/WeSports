@@ -4,12 +4,12 @@ Feature: Filter table by a specific zipcode
 
 Background: games have been added to database
   Given the following games exist:
-    | sport_name  | zipcode | slots_to_be_filled | slots_taken | game_start_time       | game_end_time |
-    | Spikeball   | 10027   | 4                  | 2           | 31-Oct-2021 15:03:00  |               |
-    | Basketball  | 10024   | 10                 | 0           | 31-Oct-2021 15:03:00  |               |
-    | basketball  | 10025   | 10                 | 3           | 03-Nov-2021 10:00:00  |               |
-    | Football    | 10030   | 22                 | 18          | 03-Nov-2021 16:00:00  |               |
-    | soccer      | 10010   | 10                 | 7           | 03-Nov-2021 12:00:00  |               |
+    | sport_name  | zipcode | slots_to_be_filled | game_start_time       | game_end_time |
+    | Spikeball   | 10027   | 4                  | 31-Oct-2021 15:03:00  |               |
+    | Basketball  | 10024   | 10                 | 31-Oct-2021 15:03:00  |               |
+    | basketball  | 10025   | 10                 | 03-Nov-2021 10:00:00  |               |
+    | Football    | 10030   | 22                 | 03-Nov-2021 16:00:00  |               |
+    | soccer      | 10010   | 10                 | 03-Nov-2021 12:00:00  |               |
 
   Given the following players exist:
     | username | email             | uid                   | provider      |
