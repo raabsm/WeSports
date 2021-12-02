@@ -15,6 +15,10 @@ Feature: join a pickup sports game
       | username | email             | uid                   | provider      |
       | Jenny    | jxm033f@gmail.com | 118294165813028623643 | google_oauth2 |
 
+    Given the following players created the following games:
+      | sport_name  | email               |
+      | Spikeball   | jxm033f@gmail.com   |
+
     Given I am logged in as "118294165813028623643"
     And I am on the details page for "Spikeball"
 

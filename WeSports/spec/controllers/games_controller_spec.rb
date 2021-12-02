@@ -3,6 +3,18 @@ require 'simplecov'
 
 RSpec.describe GamesController, type: :controller do
   before(:all) do
+    Player.delete_all
+    players = [{:username => 'Joe Shmoe', :email => 'joeshmo@gmail.com'},
+               {:username => 'Random Person', :email => 'rando@columbia.edu'},
+               {:username => 'Another Rando', :email => 'rando2@columbia.edu'}
+    ]
+
+    players.each do |player|
+      p = Player.create!(player)
+    end
+    @signed_in_player = Player.first
+
+
     Game.delete_all
     if Game.where(:sport_name => "Spikeball").empty?
       Game.create(:sport_name => "Spikeball",
@@ -25,21 +37,12 @@ RSpec.describe GamesController, type: :controller do
                   :slots_to_be_filled => 22)
     end
     if Game.where(:sport_name => "soccer").empty?
-      Game.create(:sport_name => "soccer",
+      game = Game.create(:sport_name => "soccer",
                   :zipcode => "10010",
                   :slots_to_be_filled => 10)
+      game.owning_player = @signed_in_player
+      game.save()
     end
-    Player.delete_all
-    players = [{:username => 'Joe Shmoe', :email => 'joeshmo@gmail.com'},
-               {:username => 'Random Person', :email => 'rando@columbia.edu'},
-               {:username => 'Another Rando', :email => 'rando2@columbia.edu'}
-    ]
-
-    players.each do |player|
-      p = Player.create!(player)
-    end
-    @signed_in_player = Player.first
-
   end
 
   after(:all) do
@@ -173,7 +176,7 @@ RSpec.describe GamesController, type: :controller do
       previous_len = Game.all().count
       get :create, {:game => {:sport_name => "Wiffle Ball",
                                         :zipcode => "10027",
-                                        :slots_to_be_filled => 20}}
+                                        :slots_to_be_filled => 20}}, {:user_id => @signed_in_player.id}
       expect(response).to redirect_to games_path
       expect(flash[:notice]).to match(/Successfully created Wiffle Ball game/)
       expect(Game.all().count).to eq(previous_len + 1)
@@ -203,10 +206,12 @@ RSpec.describe GamesController, type: :controller do
       game = Game.create!(:sport_name => "Football",
                          :zipcode => "10026",
                          :slots_to_be_filled => 20)
+      game.owning_player = @signed_in_player
+      game.save()
 
       get :update, {:id => game.id, :game =>
         {:sport_name => "New Sport", :zipcode => "10026",
-         :slots_to_be_filled => 20} }
+         :slots_to_be_filled => 20} }, {:user_id => @signed_in_player.id}
 
       expect(response).to redirect_to game_path(game)
       expect(flash[:notice]).to match(/Successfully updated game/)
@@ -216,9 +221,12 @@ RSpec.describe GamesController, type: :controller do
       game = Game.create(:sport_name => "New Sport",
                          :zipcode => "10026",
                          :slots_to_be_filled => 20)
+      game.owning_player = @signed_in_player
+      game.save()
+
       get :update, {:id => game.id, :game =>
         {:sport_name => "", :zipcode => "10026",
-         :slots_to_be_filled => 20} }
+         :slots_to_be_filled => 20} }, {:user_id => @signed_in_player.id}
 
       expect(response).to redirect_to edit_game_path(game)
       expect(flash[:notice]).to match(/Error: Missing Zip Code or Sport Name Fields/)
@@ -226,11 +234,14 @@ RSpec.describe GamesController, type: :controller do
 
     it "Fewer Total Slots than slots taken" do
       game = Game.where(:sport_name => "Spikeball").first
+      game.owning_player = @signed_in_player
+      game.save()
+
       game.players << [Player.second, Player.third]
 
       put :update, {:id => game.id, :game =>
         {:slots_to_be_filled => 1, :zipcode => "10026",
-         :sport_name => "New Sport"} }
+         :sport_name => "New Sport"} }, {:user_id => @signed_in_player.id}
 
       expect(response).to redirect_to edit_game_path(game)
       expect(flash[:notice]).to match("Error: More Slots Taken (2) than Available")
@@ -241,7 +252,8 @@ RSpec.describe GamesController, type: :controller do
   describe "Delete a game" do
     it "deletes the game" do
       @game = Game.where(:sport_name => "soccer").first
-      get :destroy, {:id => @game.id}, {}
+
+      get :destroy, {:id => @game.id}, {:user_id => @signed_in_player.id}
       expect(Game.where(:sport_name => "soccer").length).to eq(0)
     end
   end

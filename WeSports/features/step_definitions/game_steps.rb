@@ -8,6 +8,16 @@ Given /the following games exist/ do |games_table|
   end
 end
 
+Given /the following players created the following games/ do |table|
+  table.hashes.each do |table|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that movie to the database here.
+    game = Game.where(:sport_name => table[:sport_name]).first
+    game.owning_player = Player.where(:email => table[:email]).first
+    game.save()
+  end
+end
+
 When /I add player with email "(.*)" to game "(.*)"/ do |email, name|
   Game.where(:sport_name => name).first.players << Player.where(:email => email).first
 end

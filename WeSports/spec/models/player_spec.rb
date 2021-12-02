@@ -6,14 +6,12 @@ RSpec.describe Player, type: :model do
     if Game.where(:sport_name => "Spikeball").empty?
       Game.create(:sport_name => "Spikeball",
                   :zipcode => "10027",
-                  :slots_to_be_filled => 4,
-                  :slots_taken => 2)
+                  :slots_to_be_filled => 4)
     end
     if Game.where(:sport_name => "Basketball").empty?
       Game.create(:sport_name => "Basketball",
                   :zipcode => "10024",
-                  :slots_to_be_filled => 10,
-                  :slots_taken => 0)
+                  :slots_to_be_filled => 10)
     end
     if Player.where(:email => "Stephane@gmail.com").empty?
       @test_player=Player.create(:email => "Stephane@gmail.com",
