@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20211117210448) do
     t.integer  "slots_to_be_filled"
     t.datetime "game_start_time"
     t.datetime "game_end_time"
+    t.integer  "owning_player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
     has_and_belongs_to_many :players, join_table: 'games_players'
+    belongs_to :owning_player, :class_name => 'Player', :foreign_key => 'owning_player_id'
 
     def player_joined_game?(player_id)
         return players.exists?(player_id)

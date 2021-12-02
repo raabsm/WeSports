@@ -7,6 +7,15 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+players = [{:username => 'Joe Shmoe', :email => 'joeshmo@gmail.com'},
+					 {:username => 'Random Person', :email => 'rando@columbia.edu'},
+					 {:username => 'Another Rando', :email => 'rando2@columbia.edu'}
+]
+
+players.each do |player|
+	p = Player.create!(player)
+end
+
 games = [{:sport_name => 'Bowling', :zipcode => '10000', :slots_to_be_filled => 3, :game_start_time => '31-Oct-2021 15:03:00'},
 				 {:sport_name => 'Archery', :zipcode => '10021', :slots_to_be_filled => 10, :game_start_time => '1-Nov-2021 12:00:00'},
 				 {:sport_name => 'Boxing', :zipcode => '10005', :slots_to_be_filled => 8, :game_start_time => '31-Oct-2021 08:00:00', :game_end_time => '31-Oct-2021 10:00:00'},
@@ -14,16 +23,11 @@ games = [{:sport_name => 'Bowling', :zipcode => '10000', :slots_to_be_filled => 
 ]
 
 games.each do |game|
-  Game.create!(game)
+  g = Game.create!(game)
+  g.owning_player = Player.first
+  g.players << Player.first
+  g.players << Player.second
 end
 
-players = [{:username => 'Joe Shmoe', :email => 'joeshmo@gmail.com'},
-           {:username => 'Random Person', :email => 'rando@columbia.edu'},
-					 {:username => 'Another Rando', :email => 'rando2@columbia.edu'}
-]
 
-players.each do |player|
-  p = Player.create!(player)
-  Game.first.players << p
-  Game.second.players << p
-end
+
