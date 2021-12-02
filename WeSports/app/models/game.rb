@@ -2,6 +2,10 @@ class Game < ActiveRecord::Base
     has_and_belongs_to_many :players, join_table: 'games_players'
     belongs_to :owning_player, :class_name => 'Player', :foreign_key => 'owning_player_id'
 
+    def player_created_game?(player_id)
+        return owning_player.id == player_id
+    end
+
     def player_joined_game?(player_id)
         return players.exists?(player_id)
     end
@@ -45,10 +49,12 @@ class Game < ActiveRecord::Base
         return valid, notice
     end
 
-    def self.add_game(game_params)
+    def self.add_game(game_params, player_id)
         valid, notice = Game.check_valid_game(game_params)
         if valid
-            create!(game_params)
+            g = create!(game_params)
+            g.owning_player = Player.find(player_id)
+            g.save
             notice = "Successfully created #{game_params[:sport_name]} game"
         end
         return valid, notice

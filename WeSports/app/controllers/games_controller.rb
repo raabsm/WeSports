@@ -1,15 +1,28 @@
 class GamesController < ApplicationController
+  before_action :require_game_created_by_player, only: [:edit, :update, :destroy]
+
+  private
+
+  def require_game_created_by_player
+    @game = Game.find params[:id]
+    if not @game.player_created_game?(session[:user_id])
+      flash[:notice] = "Cannot edit a game you did not create"
+      redirect_to games_path
+    end
+  end
+
+  public
 
   def show
     id = params[:id] # retrieve movie ID from URI route
     @game = Game.find(id) # look up movie by unique ID
     @player_joined_game = @game.player_joined_game?(session[:user_id])
+    @player_owns_game = @game.player_created_game?(session[:user_id])
     @players = @game.players
     # will render app/views/movies/show.<extension> by default
   end
 
   def index
-    puts session[:name_search]
     @player = Player.find(session[:user_id])
     @games_player_joined = @player.games
     @games = Game.where.not(id: @games_player_joined.ids)
@@ -64,7 +77,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    valid, notice = Game.add_game(game_params())
+    valid, notice = Game.add_game(game_params(), session[:user_id])
     flash[:notice] = notice
     if valid
       redirect_to games_path
@@ -74,7 +87,7 @@ class GamesController < ApplicationController
   end
 
   def edit
-    @game = Game.find params[:id]
+
   end
 
   def join
@@ -86,7 +99,6 @@ class GamesController < ApplicationController
   end
 
   def update
-    @game = Game.find params[:id]
     valid, notice = @game.update_game(game_params())
     flash[:notice] = notice
     if valid
@@ -97,7 +109,6 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    @game = Game.find(params[:id])
     @game.destroy
     flash[:notice] = "Game '#{@game.sport_name}' deleted."
     redirect_to games_path

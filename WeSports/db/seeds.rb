@@ -25,6 +25,7 @@ games = [{:sport_name => 'Bowling', :zipcode => '10000', :slots_to_be_filled => 
 games.each do |game|
   g = Game.create!(game)
   g.owning_player = Player.first
+  g.save()
   g.players << Player.first
   g.players << Player.second
 end
