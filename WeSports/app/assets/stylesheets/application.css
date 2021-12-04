@@ -19,8 +19,9 @@ html {
 }
 body {
   min-height: 100%;
-  background: url(./Capture.png);
-  background-size:100% 100%;
+  background: url(./WeSports_background_2.jpg);
+  background-size:90% auto-flow;
+  background-color:black;
   color: white;
 }
 
@@ -66,6 +67,7 @@ div .welcome {
     background-color: #e73725 !important;
     border-color: #e73725 !important;
     margin: 2px;
+    width:200px;
 }
 
 .btn-back {
@@ -100,6 +102,7 @@ div .welcome {
 }
 
 form#edit_form input{
+    border-radius:5px;
     display: flow-root;
     margin-left: 12pc;
     padding:4px 2px;
@@ -116,9 +119,6 @@ form#edit_form label {
 form#edit_form {
     margin-left:40px
 }
-form#edit_form select#game_game_start_time_5i{
-    margin-right:30pc;
-}
 
 form#edit_form select#game_game_start_time_1i{
     margin-left: 50px;
@@ -128,12 +128,17 @@ form#edit_form select#game_game_end_time_1i{
 }
 
 form#edit_form select {
+    border-radius:5px;
     margin-top:10px;
     padding:4px 2px;
 }
+form#edit_form label{
+    margin-top:10px;
+}
+
 
 input#search-name-bar{
-    width:400px;
+    width:200px;
     border: 1px solid #ced4da;
     border-radius:5px;
     padding: 4px 10px;
@@ -143,13 +148,21 @@ input#search-name-bar{
 }
 
 input#search-zipcode-bar{
-    width:400px;
+    width:200px;
     border: 1px solid #ced4da;;
     border-radius:5px;
     padding: 4px 10px;
     margin: 0px 4px;
     margin-top: 4px;
         transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+input#is_available_submit{
+    margin-left:25px;
+}
+input#only_available{
+    margin-left:5px;
+    margin-top:5px;
+    color: red;
 }
 
 .btn-info {
@@ -200,4 +213,67 @@ input#search-zipcode-bar{
 
 .blue:active {
     box-shadow: inset 0 2px 5px #2370FE;   
+}
+
+form#new_form input{
+    border-radius:5px;
+    display: flow-root;
+    margin-left: 12pc;
+    padding:4px 2px;
+    margin-top:10px
+}
+form#new_form label {
+    text-align: right;
+    clear: both;
+    float:left;
+    padding-left: 10px;
+    margin-right:15px;
+    margin-top: 9px
+}
+form#new_form {
+    margin-left:40px
+}
+
+form#new_form select#game_game_start_time_1i{
+    margin-left: 50px;
+}
+form#new_form select#game_game_end_time_1i{
+    margin-left: 55px;
+}
+
+form#new_form label{
+    margin-top:10px;
+}
+
+form#new_form select {
+    border-radius:5px;
+    margin-top:10px;
+    padding:4px 2px;
+}
+ul {
+  list-style: none; 
+}
+ul li::before {
+  content: "\2022";  
+  color: red; 
+  font-weight: bold; 
+  display: inline-block; 
+  width: 10px; 
+  margin-left: -1em; 
+}
+
+a:link {
+  color: red;
+}
+
+a:visited {
+  color: red;
+}
+
+a:hover {
+  color: red;
+}
+
+a:active {
+  color: red;
 }
