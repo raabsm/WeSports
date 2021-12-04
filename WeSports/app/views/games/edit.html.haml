@@ -1,8 +1,9 @@
 -# edit.html.haml using partial
+= button_to 'Back to Games list', games_path, :method => :get, :class => 'btn btn-primary btn-back'
 
 %h2 Edit Existing Game
 
-= form_tag game_path(@game), :method => :put do
+= form_tag game_path(@game), :method => :put, :id => 'edit_form' do
 
   = label :game, :sport_name, 'Sport Name'
   = text_field :game, "sport_name", placeholder: @game.sport_name

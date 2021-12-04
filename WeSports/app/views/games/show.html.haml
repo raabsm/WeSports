@@ -1,30 +1,36 @@
 -# in app/views/movies/show.html.haml
+= button_to 'Back to Games list', games_path, :method => :get, :class => 'btn btn-primary btn-back'
 
 %h3 Details about #{@game.sport_name}
 
-%ul#details
-  %li
-    Zip Code:
-    = @game.zipcode
-  %li
-    Start Time:
-    = @game.game_start_time.strftime("%B %d, %Y, %I:%M %p")
-  %li
-    Slots Left Available:
-    = @game.spots_left
+%div.detailsList
+  %ul
+    %li
+      Zip Code:
+      = @game.zipcode
+    %li
+      Start Time:
+      = @game.game_start_time.strftime("%B %d, %Y, %I:%M %p")
+    %li
+      Slots Left Available:
+      = @game.spots_left
 
 %h3 Players Joined
-- @players.each do |p|
-  %li
-    Name:
-    = p.username
-    | Email:
-    = p.email
 
-- if @game.spots_left > 0 and not @player_joined_game
-  = button_to 'Join Game', join_game_path(@game), :method => :get, :confirm => 'Are you sure?', :class => 'btn btn-primary'
-- if @player_owns_game
-  = button_to 'Edit', edit_game_path(@game), :method => :get, :class => 'btn btn-primary'
-  = button_to 'Delete', game_path(@game), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
-= button_to 'Back to Games list', games_path, :method => :get, :class => 'btn btn-primary'
+%div.playersList
+  %ul
+    - @players.each do |p|
+      %li
+        Name:
+        = p.username
+        | Email:
+        = p.email
+
+%div.gameButtons
+  - if @game.spots_left > 0 and not @player_joined_game
+    = button_to 'Join Game', join_game_path(@game), :method => :get, :confirm => 'Are you sure to Join this Game?', :class => 'btn btn-primary btn-game'
+  - if @player_owns_game
+    = button_to 'Edit', edit_game_path(@game), :method => :get, :class => 'btn btn-primary btn-game'
+    = button_to 'Delete', game_path(@game), :method => :delete, :confirm => 'Are you sure to delete this Game?', :class => 'btn btn-primary btn-game'
+
 
