@@ -18,8 +18,7 @@
       Slots Left Available:
       = @game.spots_left
     %li
-      Location:
-      = "https://www.google.com/maps/place/" + @game.address.gsub(' ','+') + "+" + @game.zipcode
+      = link_to "Open Location in Maps", @location
 
 %h3 Players Joined
 

@@ -19,6 +19,7 @@ class GamesController < ApplicationController
     @player_joined_game = @game.player_joined_game?(session[:user_id])
     @player_owns_game = @game.player_created_game?(session[:user_id])
     @players = @game.players
+    @location = "https://www.google.com/maps/place/" + @game.address.gsub(' ','+') + "+" + @game.zipcode
     # will render app/views/movies/show.<extension> by default
   end
 
