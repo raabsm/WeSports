@@ -7,19 +7,20 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-players = [{:username => 'Joe Shmoe', :email => 'joeshmo@gmail.com'},
-					 {:username => 'Random Person', :email => 'rando@columbia.edu'},
-					 {:username => 'Another Rando', :email => 'rando2@columbia.edu'}
+players = [{:username => 'Samuel Raab', :email => 'samraab@gmail.com'},
+					 {:username => 'Jenny Martinez', :email => 'jenny@columbia.edu'},
+					 {:username => 'Joe Shmo', :email => 'joeshmo@columbia.edu'}
 ]
 
 players.each do |player|
 	p = Player.create!(player)
 end
 
-games = [{:sport_name => 'Bowling', :address => '362 Riverside Dr', :zipcode => '10025', :slots_to_be_filled => 3, :game_start_time => '31-Oct-2021 15:03:00'},
-				 {:sport_name => 'Archery', :address => '70 Morningside Dr', :zipcode => '10027', :slots_to_be_filled => 10, :game_start_time => '1-Nov-2021 12:00:00'},
-				 {:sport_name => 'Boxing', :address => '2581 Broadway', :zipcode => '10025', :slots_to_be_filled => 8, :game_start_time => '31-Oct-2021 08:00:00', :game_end_time => '31-Oct-2021 10:00:00'},
-         {:sport_name => 'Running', :address => '680 S Catalina St', :zipcode => '90005', :slots_to_be_filled => 4, :game_start_time => '31-Oct-2021 15:03:00'},
+games = [{:sport_name => 'Basketball', :address => '362 Riverside Dr', :zipcode => '10025', :slots_to_be_filled => 10, :game_start_time => '10-Dec-2021 16:00:00', :game_end_time => '10-Dec-2021 18:00:00'},
+         {:sport_name => 'Running', :address => '70 Morningside Dr', :zipcode => '10027', :slots_to_be_filled => 2, :game_start_time => '15-Dec-2021 08:30:00'},
+         {:sport_name => 'Basketball', :address => '22 W 76th St', :zipcode => '10023', :slots_to_be_filled => 4, :game_start_time => '15-Dec-2021 08:00:00', :game_end_time => '15-Dec-2021 10:00:00'},
+         {:sport_name => 'Running', :address => '435 W 116th', :zipcode => '10027', :slots_to_be_filled => 2, :game_start_time => '8-Dec-2021 10:45:00'},
+         {:sport_name => 'Spikeball', :address => '2554 Broadway', :zipcode => '10025', :slots_to_be_filled => 4, :game_start_time => '11-Dec-2021 15:45:00', :game_end_time => '11-Dec-2021 17:00:00'}
 ]
 
 games.each do |game|
