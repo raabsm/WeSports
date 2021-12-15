@@ -28,7 +28,7 @@ Feature: join a pickup sports game
     Then I should be on the details page for "Spikeball"
     And I should see "Successfully Joined Game"
     And I should see "Slots Left Available: 3"
-    And I should see "Name: Jenny | Email: jxm033f@gmail.com"
+    And I should see "Jenny"
 
   Scenario: Button disappears if all slots taken
 
@@ -36,16 +36,16 @@ Feature: join a pickup sports game
     Then I should be on the details page for "Spikeball"
     And I should see "Successfully Joined Game"
     And I should see "Slots Left Available: 3"
-    And I should see "Name: Jenny | Email: jxm033f@gmail.com"
+    And I should see "Jenny"
     And I should not see "Join Game"
 
-  Scenario: Game is added to games joined
+  Scenario: Game is added to games joined on profile
 
     When I press "Join Game"
     Then I should be on the details page for "Spikeball"
     And I should see "Successfully Joined Game"
     And I should see "Slots Left Available: 3"
-    And I should see "Name: Jenny | Email: jxm033f@gmail.com"
-    When I press "Back to Games list"
-    Then I should be on the WeSports home page
-    Then I should see "Games You Joined:" before "Spikeball"
+    And I should see "Jenny"
+    When I follow "Jenny"
+    Then I should be on the profile page for "Jenny"
+    Then I should see "Games Joined:" before "Spikeball"
