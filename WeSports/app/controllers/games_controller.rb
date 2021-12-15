@@ -35,41 +35,24 @@ class GamesController < ApplicationController
     zip = params[:zip_search] || session[:zip_search] || nil
     @available = params[:only_available] || nil
 
-    if params[:name_search] != session[:name_search] or params[:zip_search] != session[:zip_search] or params[:only_available] != session[:only_available]
+    if params[:name_search] != session[:name_search] or params[:zip_search] != session[:zip_search] or @available != session[:only_available]
       session[:name_search] = name
       session[:zip_search] = zip
-      session[:only_available] = @available
+      session[:only_available] = params[:only_available]
       redirect_to :name_search => name, :zip_search => zip, :only_available => @available and return
     end
 
+    @games = Game.all()
+    if not params[:name_search].blank?
+      sport = params[:name_search].downcase
+      @games = @games.where("lower(sport_name) LIKE :name_search", name_search: "%#{sport}%")
+    end
+    if not params[:zip_search].blank?
+      zip = params[:zip_search].downcase
+      @games = @games.where("zipcode LIKE :zip_search", zip_search: "%#{zip}%")
+    end
     if params[:only_available] == "1"
-      if params[:name_search].blank? and params[:zip_search].blank?
-        @games = @games.select {|game| game.spots_left > 0}
-      elsif !params[:name_search].blank? and params[:zip_search].blank?
-        @sport = params[:name_search].downcase
-        @games = @games.where("lower(sport_name) LIKE :name_search", name_search: "%#{@sport}%").select {|game| game.spots_left > 0}
-      elsif params[:name_search].blank? and !params[:zip_search].blank?
-        @zip = params[:zip_search].downcase
-        @games = @games.where("zipcode LIKE :zip_search", zip_search: "%#{@zip}%").select {|game| game.spots_left > 0}
-      else
-        @sport = params[:name_search].downcase
-        @zip = params[:zip_search].downcase
-        @games = @games.where("lower(sport_name) LIKE :name_search AND zipcode LIKE :zip_search", name_search: "%#{@sport}%", zip_search: "%#{@zip}%").select {|game| game.spots_left > 0}
-      end
-    else
-      if params[:name_search].blank? and params[:zip_search].blank?
-        @games = @games
-      elsif !params[:name_search].blank? and params[:zip_search].blank?
-        @sport = params[:name_search].downcase
-        @games = @games.where("lower(sport_name) LIKE :name_search", name_search: "%#{@sport}%")
-      elsif params[:name_search].blank? and !params[:zip_search].blank?
-        @zip = params[:zip_search].downcase
-        @games = @games.where("zipcode LIKE :zip_search", zip_search: "%#{@zip}%")
-      else
-        @sport = params[:name_search].downcase
-        @zip = params[:zip_search].downcase
-        @games = @games.where("lower(sport_name) LIKE :name_search AND zipcode LIKE :zip_search", name_search: "%#{@sport}%", zip_search: "%#{@zip}%")
-      end
+      @games = @games.select {|game| game.spots_left > 0}
     end
   end
 
