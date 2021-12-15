@@ -1,5 +1,6 @@
 Wesports::Application.routes.draw do
   resources :games
+  resources :players, only: [:show]
   get 'games/:id/join', to: 'games#join', as: :join_game
   root 'games#login'
   

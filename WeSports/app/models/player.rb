@@ -10,6 +10,10 @@ class Player < ActiveRecord::Base
         end
   end
 
+  def find_games_created()
+    return Game.where(:owning_player_id => id)
+  end
+
   def self.check_player_exist(player_id)
     if exists?(id: player_id)
       notice = ""

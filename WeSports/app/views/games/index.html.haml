@@ -51,25 +51,4 @@
 
 = button_to 'Add new game', new_game_path, method: :get, :class => "btn btn-info"
 
-%br
-%h3 Games You Joined:
-
-%table#games.table.table-striped.col-md-12
-  %thead
-    %tr
-      %th Sport Name
-      %th Zip Code
-      %th Start Time
-      %th End Time
-      %th Slots Available
-      %th Game Info
-  %tbody
-    - @games_player_joined.each do |game|
-      %tr
-        %td= game.sport_name
-        %td= game.zipcode
-        %td= game.game_start_time
-        %td= game.game_end_time
-        %td= game.spots_left
-        %td= link_to "More about #{game.sport_name}", game_path(game)
-
+= button_to 'Profile Page', player_path(@player), method: :get, :class => "btn btn-info"

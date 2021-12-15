@@ -25,11 +25,7 @@
 %div.playersList
   %ul
     - @players.each do |p|
-      %li
-        Name:
-        = p.username
-        | Email:
-        = p.email
+      %li= link_to "#{p.username}", player_path(p)
 
 %div.gameButtons
   - if @game.spots_left > 0 and not @player_joined_game
