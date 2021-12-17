@@ -33,8 +33,8 @@
 %table#games.table.table-striped.col-md-12
   %thead
     %tr
-      %th Sport Name
-      %th Zip Code
+      %th{:class => @name_header}= link_to 'Sport Name', games_path(:sort => 'name', :name_search => @name, :zip_search => @zip, :only_available => @available), :id => 'name_header'
+      %th{:class => @zip_header}= link_to 'Zip Code', games_path(:sort => 'zip', :name_search => @name, :zip_search => @zip, :only_available => @available), :id => 'zip_header'
       %th Start Time
       %th End Time
       %th Slots Available

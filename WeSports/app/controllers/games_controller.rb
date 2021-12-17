@@ -28,6 +28,13 @@ class GamesController < ApplicationController
   end
 
   def index
+    sort = params[:sort] || session[:sort]
+    case sort
+    when 'name'
+      ordering,@name_header = {:sport_name => :asc}, 'bg-warning hilite'
+    when 'zip'
+      ordering,@zip_header = {:zipcode => :asc}, 'bg-warning hilite'
+    end
     @player = Player.find(session[:user_id])
     @games_player_joined = @player.games
     @games = Game.where.not(id: @games_player_joined.ids)
@@ -35,18 +42,19 @@ class GamesController < ApplicationController
     if @player.nil?
       redirect_to '/login'
     end
-    name = params[:name_search] || session[:name_search] || nil
-    zip = params[:zip_search] || session[:zip_search] || nil
+    @name = params[:name_search] || session[:name_search] || nil
+    @zip = params[:zip_search] || session[:zip_search] || nil
     @available = params[:only_available] || nil
 
-    if params[:name_search] != session[:name_search] or params[:zip_search] != session[:zip_search] or @available != session[:only_available]
-      session[:name_search] = name
-      session[:zip_search] = zip
+    if params[:sort] != session[:sort] or params[:name_search] != session[:name_search] or params[:zip_search] != session[:zip_search] or @available != session[:only_available]
+      session[:sort] = sort
+      session[:name_search] = @name
+      session[:zip_search] = @zip
       session[:only_available] = params[:only_available]
-      redirect_to :name_search => name, :zip_search => zip, :only_available => @available and return
+      redirect_to :sort => sort, :name_search => @name, :zip_search => @zip, :only_available => @available and return
     end
 
-    @games = Game.all()
+    @games = Game.all().order(ordering)
     if not params[:name_search].blank?
       sport = params[:name_search].downcase
       @games = @games.where("lower(sport_name) LIKE :name_search", name_search: "%#{sport}%")
@@ -58,6 +66,7 @@ class GamesController < ApplicationController
     if params[:only_available] == "1"
       @games = @games.select {|game| game.spots_left > 0}
     end
+
   end
 
   def new
