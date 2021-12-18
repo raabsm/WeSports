@@ -171,6 +171,22 @@ RSpec.describe GamesController, type: :controller do
     end
   end
 
+  describe "When trying to sort by Sport Name" do
+    it "returns a list of games sorted asc" do
+      get  :index, {:sort => 'name'}
+      expect(response).to redirect_to game_path
+      expect(assigns(:games).length).to eq(3)
+    end
+  end
+
+  describe "When trying to sort by Start Time" do
+    it "returns a list of games sorted asc" do
+      get  :index, {:sort => 'start'}
+      expect(response).to redirect_to game_path
+      expect(assigns(:games).length).to eq(3)
+    end
+  end
+
   describe "Add New Game" do
     it "with valid parameters" do
       previous_len = Game.all().count
