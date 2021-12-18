@@ -32,8 +32,8 @@ class GamesController < ApplicationController
     case sort
     when 'name'
       ordering,@name_header = {:sport_name => :asc}, 'bg-warning hilite'
-    when 'zip'
-      ordering,@zip_header = {:zipcode => :asc}, 'bg-warning hilite'
+    when 'start'
+      ordering,@start_header = {:game_start_time => :asc}, 'bg-warning hilite'
     end
     @player = Player.find(session[:user_id])
     @games_player_joined = @player.games

@@ -25,7 +25,7 @@ Feature: Sort table by a specific name, zip or start date
     Then I should see "Basketball" before "Spikeball"
     Then I should see "Football" before "soccer"
 
-  Scenario: sort games in increasing order based on zipcode
-    When I follow "Zip Code"
-    Then I should see "10024" before "10027"
+  Scenario: sort games in increasing order based on start time
+    When I follow "Start Time"
     Then I should see "Basketball" before "basketball"
+    Then I should see "soccer" before "Football"

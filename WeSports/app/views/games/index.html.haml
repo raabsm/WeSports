@@ -34,8 +34,8 @@
   %thead
     %tr
       %th{:class => @name_header}= link_to 'Sport Name', games_path(:sort => 'name', :name_search => @name, :zip_search => @zip, :only_available => @available), :id => 'name_header'
-      %th{:class => @zip_header}= link_to 'Zip Code', games_path(:sort => 'zip', :name_search => @name, :zip_search => @zip, :only_available => @available), :id => 'zip_header'
-      %th Start Time
+      %th Zip Code
+      %th{:class => @start_header}= link_to 'Start Time', games_path(:sort => 'start', :name_search => @name, :zip_search => @zip, :only_available => @available), :id => 'start_header'
       %th End Time
       %th Slots Available
       %th Game Info
