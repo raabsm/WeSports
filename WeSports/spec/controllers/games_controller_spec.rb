@@ -173,17 +173,15 @@ RSpec.describe GamesController, type: :controller do
 
   describe "When trying to sort by Sport Name" do
     it "returns a list of games sorted asc" do
-      get  :index, {:sort => 'name'}
-      expect(response).to redirect_to game_path
-      expect(assigns(:games).length).to eq(3)
+      get  :index, {:sort => 'name'}, {:user_id => @signed_in_player.id, :sort => 'name'}
+      expect(assigns(:games).map { |game| game.sport_name }).to eq(["Basketball", "Football", "Spikeball", "basketball", "soccer"])
     end
   end
 
   describe "When trying to sort by Start Time" do
     it "returns a list of games sorted asc" do
-      get  :index, {:sort => 'start'}
-      expect(response).to redirect_to game_path
-      expect(assigns(:games).length).to eq(3)
+      get  :index, {:sort => 'start'}, {:user_id => @signed_in_player.id, :sort => 'start'}
+      expect(assigns(:games).map { |game| game.sport_name }).to eq(["Spikeball", "Basketball", "basketball", "Football", "soccer"])
     end
   end
 
