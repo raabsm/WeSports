@@ -23,7 +23,7 @@ Github: https://github.com/raabsm/WeSports
 Features
 Pages
 	Login
-		Sign in botton (redirects to google oauth)
+		Sign in botton (redirects to google oauth) </br>
 	Index 
 		Table with games available
 		Table with games that user joined
