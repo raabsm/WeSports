@@ -20,11 +20,10 @@ Heroku: https://wesports-app.herokuapp.com/
 
 Github: https://github.com/raabsm/WeSports
 
-Features </br>
 Pages </br>
-	1. Login </br>
+	<b>1. Login </br></b>
 		Sign in botton (redirects to google oauth) </br>
-	2. Index </br>
+	<b>2. Index </br></b>
 		Table with games available </br>
 		More info buttons on every game (redirect to game description) </br>
 		Filter for available only games </br>
@@ -32,19 +31,19 @@ Pages </br>
 		Sort by Sport Name and Start Time </br>
 		Create a game button (redirect to create page) </br>
 		View Profile Page </br>
-	3. Game Description </br>
+	<b>3. Game Description </br></b>
 		View game description (location/sport/college etc) </br>
 		View players that have join the game </br>
 		Join button (if slots are available) </br>
 		Delete game (if user is the owner) </br>
 		Back button (redirect to index) </br>
-	4. Create (Where users can create event)
+	<b>4. Create (Where users can create event) </br></b>
 		Form with game description for user to fill </br>
 		Add game to the list of games table </br>
 		Create button (redirects to game description of the game created) </br>
-	5. Edit Game Page </br>
+	<b>5. Edit Game Page </br></b>
 		Form to edit different attributes </br>
-	6. Profile Page </br>
+	<b>6. Profile Page </br></b>
 		Table with games that user joined </br>
 		Table with games that user created </br>
 		Back button (redirect to index) </br>
