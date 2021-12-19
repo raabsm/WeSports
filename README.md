@@ -48,3 +48,8 @@ Pages </br>
 		Table with games that user joined </br>
 		Table with games that user created </br>
 		Back button (redirect to index) </br>
+
+Problems Faced
+1. RSpec at times does not run correctly, reach out to the team with any concerns
+2. If running locally, OAuth only works with localhost not 0.0.0.0
+3. If running through container, make sure that it's still being connected through the localhost of the machine its running on
