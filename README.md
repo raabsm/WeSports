@@ -20,11 +20,11 @@ Heroku: https://wesports-app.herokuapp.com/
 
 Github: https://github.com/raabsm/WeSports
 
-Features
-Pages
-	Login
+Features </br>
+Pages </br>
+	Login </br>
 		Sign in botton (redirects to google oauth) </br>
-	Index 
+	Index </br>
 		Table with games available
 		Table with games that user joined
 		More info buttons on every game (redirect to game description)
