@@ -1,6 +1,6 @@
 # WeSports
 
-<b>Members</b>
+<b>Members</b></br>
 Member 1 Name: Jenny Martinez</br>
 Member 1 UNI: jm4607</br>
 Member 2 Name: Stephane Meunier</br>
