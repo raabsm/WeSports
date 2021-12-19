@@ -1,13 +1,14 @@
 # WeSports
 
-Member 1 Name: Jenny Martinez
-Member 1 UNI: jm4607
-Member 2 Name: Stephane Meunier
-Member 2 UNI: sjm2264
-Member 3 Name: Samuel Raab
-Member 3 UNI: smr2218
-Member 4 Name: Tanay Murdia
-Member 4 UNI: tm3149
+<b>Members</b>
+Member 1 Name: Jenny Martinez</br>
+Member 1 UNI: jm4607</br>
+Member 2 Name: Stephane Meunier</br>
+Member 2 UNI: sjm2264</br>
+Member 3 Name: Samuel Raab</br>
+Member 3 UNI: smr2218</br>
+Member 4 Name: Tanay Murdia</br>
+Member 4 UNI: tm3149</br>
 
 Run program locally
 1. bundle install --without production
