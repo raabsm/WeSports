@@ -23,7 +23,7 @@ Github: https://github.com/raabsm/WeSports
 
 Pages </br>
 	<b>1. Login </br></b>
-		Sign in botton (redirects to google oauth) </br>
+		Sign in button (redirects to google oauth) </br>
 	<b>2. Index </br></b>
 		Table with games available </br>
 		More info buttons on every game (redirect to game description) </br>
